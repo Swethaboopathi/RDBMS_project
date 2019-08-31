@@ -1,0 +1,4630 @@
+
+SQL*Plus: Release 11.2.0.2.0 Production on Thu Aug 22 09:11:18 2019
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+SQL> conn scot/tiger
+Connected.
+SQL> desc worker;
+ERROR:
+ORA-04043: object worker does not exist
+
+
+SQL> desc department;
+ERROR:
+ORA-04043: object department does not exist
+
+
+SQL> SELECT sum(sal)+5 from emp where deptno=10;
+
+SUM(SAL)+5
+----------
+      8785
+
+SQL> SELECT sum(sal) from emp where deptno=10;
+
+  SUM(SAL)
+----------
+      8780
+
+SQL> CREATE TABLE WORKER_DEPARTMENT
+  2  (
+  3  Dept_id number primary key,
+  4  Dept_name varchar2(10)
+  5  );
+CREATE TABLE WORKER_DEPARTMENT
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+SQL> drop worker_department;
+drop worker_department
+     *
+ERROR at line 1:
+ORA-00950: invalid DROP option
+
+
+SQL> drop table  worker_department;
+
+Table dropped.
+
+SQL> CREATE TABLE WORKER_DEPARTMENT
+  2  (
+  3  Dept_id number primary key,
+  4  Dept_name varchar2(10)
+  5  );
+
+Table created.
+
+SQL> INSERT INTO WORKER_DEPARTMENT VALUES(10,'Sales');
+
+1 row created.
+
+SQL> INSERT INTO WORKER_DEPARTMENT VALUES(20,'Supervisor');
+
+1 row created.
+
+SQL> INSERT INTO WORKER_DEPARTMENT VALUES(30,'Cleaning');
+
+1 row created.
+
+SQL> INSERT INTO WORKER_DEPARTMENT VALUES(40,'Cashier');
+
+1 row created.
+
+SQL> select * from worker_department;
+
+   DEPT_ID DEPT_NAME
+---------- ----------
+        10 Sales
+        20 Supervisor
+        30 Cleaning
+        40 Cashier
+
+SQL>
+SQL> CREATE TABLE WORKER
+  2  (
+  3   worker_id VARCHAR2(5) primary key,
+  4   Name VARCHAR2(20),
+  5   dob DATE,
+  6   Gender varchar2(10),
+  7   Address VARCHAR2(30),
+  8   Age number(2),
+  9   Mobile_no number(10) NOT NULL,
+ 10   Dept_id number,
+ 11   Section varchar2(20),
+ 12   Salary number(5),
+ 13   constraint con_dept FOREIGN KEY(dept_id) REFERENCES WORKER_DEPARTMENT(Dept_id)
+ 14   );
+
+Table created.
+
+SQL> INSERT INTO WORKER VALUES(100,'Parker','29-JUN-1995','Male','NO-4 ,ABapartment OMR',24,9423543256,10,'Shirt',1500);
+
+1 row created.
+
+SQL> INSERT INTO WORKER VALUES(101,'Prathap','10-JUL-1994','Male','plot no 10,RAJ NAGAR OMR',25,9235432567,20,'Shirt',15000);
+
+1 row created.
+
+SQL> INSERT INTO WORKER VALUES(103,'Mani','08-APR-1990','Male','SS apartments OMR',29,9765746537,30,'Shirt',6000);
+
+1 row created.
+
+SQL> INSERT INTO WORKER VALUES(104,'Moris','23-SEP-1992','Male','SS apartments OMR',27,9765454578,40,'Shirt',9000);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO WORKER VALUES(105,'Malini','20-APR-1991','Female','KK Nagar OMR',28,8072076518,10,'Sarees',6000);
+
+1 row created.
+
+SQL> INSERT INTO WORKER VALUES(106,'Mahe','10-DEC-1991','Female','MM Nagar OMR',30,9994045035,20,'Sarees',15000);
+
+1 row created.
+
+SQL> INSERT INTO WORKER VALUES(107,'Shree','12-JAN-1994','Female','Sun lane TBM',24,8882207618,30,'Sarees',7800);
+
+1 row created.
+
+SQL> INSERT INTO WORKER VALUES(108,'Soniya','17-FEB-1994','Female','New SSR plot',24,9000290002,40,'Sarees',7900);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO WORKER VALUES(109,'Koushik','30-JUL-1994','Male','T nagar',24,8882207619,10,'Kidswear',7800);
+
+1 row created.
+
+SQL> INSERT INTO WORKER VALUES(110,'Harry','20-APR-1995','Male','ECR apartment,Navalur',23,9944032440,20,'Kidswear',16800);
+
+1 row created.
+
+SQL> INSERT INTO WORKER VALUES(111,'Mano','20-FEB-1993','Male','PP House,apt, OMR',25,9956785432,30,'Kidswear',6600);
+
+1 row created.
+
+SQL> INSERT INTO WORKER VALUES(112,'Sedhu','25-AUG-1994','Male','PP House,apt, OMR',24,8877653431,40,'Kidswear',8100);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO WORKER VALUES(113,'Sidhu','03-JUL-1994','Male','St no 10 OMR',24,9977880022,10,'Suit',7100);
+
+1 row created.
+
+SQL> INSERT INTO WORKER VALUES(114,'Hemanth','20-MAY-1992','Male','98 plotno,ac pt OMR',24,9977880077,20,'Suit',10000);
+
+1 row created.
+
+SQL> INSERT INTO WORKER VALUES(115,'Martin','20-JUN-1993','Male','Apt House, OMR',25,9872087529,30,'Suit',6000);
+
+1 row created.
+
+SQL> INSERT INTO WORKER VALUES(116,'Sudhakar','25-MAR-1994','Male','PCT House',24,9543295432,40,'Suit',7800);
+
+1 row created.
+
+SQL> select * from worker;
+
+WORKE NAME                 DOB       GENDER     ADDRESS
+----- -------------------- --------- ---------- ------------------------------
+       AGE  MOBILE_NO    DEPT_ID SECTION                  SALARY
+---------- ---------- ---------- -------------------- ----------
+100   Parker               29-JUN-95 Male       NO-4 ,ABapartment OMR
+        24 9423543256         10 Shirt                      1500
+
+101   Prathap              10-JUL-94 Male       plot no 10,RAJ NAGAR OMR
+        25 9235432567         20 Shirt                     15000
+
+103   Mani                 08-APR-90 Male       SS apartments OMR
+        29 9765746537         30 Shirt                      6000
+
+
+WORKE NAME                 DOB       GENDER     ADDRESS
+----- -------------------- --------- ---------- ------------------------------
+       AGE  MOBILE_NO    DEPT_ID SECTION                  SALARY
+---------- ---------- ---------- -------------------- ----------
+104   Moris                23-SEP-92 Male       SS apartments OMR
+        27 9765454578         40 Shirt                      9000
+
+105   Malini               20-APR-91 Female     KK Nagar OMR
+        28 8072076518         10 Sarees                     6000
+
+106   Mahe                 10-DEC-91 Female     MM Nagar OMR
+        30 9994045035         20 Sarees                    15000
+
+
+WORKE NAME                 DOB       GENDER     ADDRESS
+----- -------------------- --------- ---------- ------------------------------
+       AGE  MOBILE_NO    DEPT_ID SECTION                  SALARY
+---------- ---------- ---------- -------------------- ----------
+107   Shree                12-JAN-94 Female     Sun lane TBM
+        24 8882207618         30 Sarees                     7800
+
+108   Soniya               17-FEB-94 Female     New SSR plot
+        24 9000290002         40 Sarees                     7900
+
+109   Koushik              30-JUL-94 Male       T nagar
+        24 8882207619         10 Kidswear                   7800
+
+
+WORKE NAME                 DOB       GENDER     ADDRESS
+----- -------------------- --------- ---------- ------------------------------
+       AGE  MOBILE_NO    DEPT_ID SECTION                  SALARY
+---------- ---------- ---------- -------------------- ----------
+110   Harry                20-APR-95 Male       ECR apartment,Navalur
+        23 9944032440         20 Kidswear                  16800
+
+111   Mano                 20-FEB-93 Male       PP House,apt, OMR
+        25 9956785432         30 Kidswear                   6600
+
+112   Sedhu                25-AUG-94 Male       PP House,apt, OMR
+        24 8877653431         40 Kidswear                   8100
+
+
+WORKE NAME                 DOB       GENDER     ADDRESS
+----- -------------------- --------- ---------- ------------------------------
+       AGE  MOBILE_NO    DEPT_ID SECTION                  SALARY
+---------- ---------- ---------- -------------------- ----------
+113   Sidhu                03-JUL-94 Male       St no 10 OMR
+        24 9977880022         10 Suit                       7100
+
+114   Hemanth              20-MAY-92 Male       98 plotno,ac pt OMR
+        24 9977880077         20 Suit                      10000
+
+115   Martin               20-JUN-93 Male       Apt House, OMR
+        25 9872087529         30 Suit                       6000
+
+
+WORKE NAME                 DOB       GENDER     ADDRESS
+----- -------------------- --------- ---------- ------------------------------
+       AGE  MOBILE_NO    DEPT_ID SECTION                  SALARY
+---------- ---------- ---------- -------------------- ----------
+116   Sudhakar             25-MAR-94 Male       PCT House
+        24 9543295432         40 Suit                       7800
+
+
+16 rows selected.
+
+SQL> set pagesize 60
+SQL> set linesize 120
+SQL> select * from worker;
+
+WORKE NAME                 DOB       GENDER     ADDRESS                               AGE  MOBILE_NO    DEPT_ID
+----- -------------------- --------- ---------- ------------------------------ ---------- ---------- ----------
+SECTION                  SALARY
+-------------------- ----------
+100   Parker               29-JUN-95 Male       NO-4 ,ABapartment OMR                  24 9423543256         10
+Shirt                      1500
+
+101   Prathap              10-JUL-94 Male       plot no 10,RAJ NAGAR OMR               25 9235432567         20
+Shirt                     15000
+
+103   Mani                 08-APR-90 Male       SS apartments OMR                      29 9765746537         30
+Shirt                      6000
+
+104   Moris                23-SEP-92 Male       SS apartments OMR                      27 9765454578         40
+Shirt                      9000
+
+105   Malini               20-APR-91 Female     KK Nagar OMR                           28 8072076518         10
+Sarees                     6000
+
+106   Mahe                 10-DEC-91 Female     MM Nagar OMR                           30 9994045035         20
+Sarees                    15000
+
+107   Shree                12-JAN-94 Female     Sun lane TBM                           24 8882207618         30
+Sarees                     7800
+
+108   Soniya               17-FEB-94 Female     New SSR plot                           24 9000290002         40
+Sarees                     7900
+
+109   Koushik              30-JUL-94 Male       T nagar                                24 8882207619         10
+Kidswear                   7800
+
+110   Harry                20-APR-95 Male       ECR apartment,Navalur                  23 9944032440         20
+Kidswear                  16800
+
+111   Mano                 20-FEB-93 Male       PP House,apt, OMR                      25 9956785432         30
+Kidswear                   6600
+
+112   Sedhu                25-AUG-94 Male       PP House,apt, OMR                      24 8877653431         40
+Kidswear                   8100
+
+113   Sidhu                03-JUL-94 Male       St no 10 OMR                           24 9977880022         10
+Suit                       7100
+
+114   Hemanth              20-MAY-92 Male       98 plotno,ac pt OMR                    24 9977880077         20
+Suit                      10000
+
+115   Martin               20-JUN-93 Male       Apt House, OMR                         25 9872087529         30
+Suit                       6000
+
+116   Sudhakar             25-MAR-94 Male       PCT House                              24 9543295432         40
+Suit                       7800
+
+
+16 rows selected.
+
+SQL> set linesize 600
+SQL> select * from worker;
+
+WORKE NAME                 DOB       GENDER     ADDRESS                               AGE  MOBILE_NO    DEPT_ID SECTION                  SALARY
+----- -------------------- --------- ---------- ------------------------------ ---------- ---------- ---------- -------------------- ----------
+100   Parker               29-JUN-95 Male       NO-4 ,ABapartment OMR                  24 9423543256         10 Shirt                              1500
+101   Prathap              10-JUL-94 Male       plot no 10,RAJ NAGAR OMR               25 9235432567         20 Shirt                             15000
+103   Mani                 08-APR-90 Male       SS apartments OMR                      29 9765746537         30 Shirt                              6000
+104   Moris                23-SEP-92 Male       SS apartments OMR                      27 9765454578         40 Shirt                              9000
+105   Malini               20-APR-91 Female     KK Nagar OMR                           28 8072076518         10 Sarees                             6000
+106   Mahe                 10-DEC-91 Female     MM Nagar OMR                           30 9994045035         20 Sarees                            15000
+107   Shree                12-JAN-94 Female     Sun lane TBM                           24 8882207618         30 Sarees                             7800
+108   Soniya               17-FEB-94 Female     New SSR plot                           24 9000290002         40 Sarees                             7900
+109   Koushik              30-JUL-94 Male       T nagar                                24 8882207619         10 Kidswear                   7800
+110   Harry                20-APR-95 Male       ECR apartment,Navalur                  23 9944032440         20 Kidswear                  16800
+111   Mano                 20-FEB-93 Male       PP House,apt, OMR                      25 9956785432         30 Kidswear                   6600
+112   Sedhu                25-AUG-94 Male       PP House,apt, OMR                      24 8877653431         40 Kidswear                   8100
+113   Sidhu                03-JUL-94 Male       St no 10 OMR                           24 9977880022         10 Suit                               7100
+114   Hemanth              20-MAY-92 Male       98 plotno,ac pt OMR                    24 9977880077         20 Suit                              10000
+115   Martin               20-JUN-93 Male       Apt House, OMR                         25 9872087529         30 Suit                               6000
+116   Sudhakar             25-MAR-94 Male       PCT House                              24 9543295432         40 Suit                               7800
+
+16 rows selected.
+
+SQL> desc worker;
+ Name                                                                                                                                                                                                                                                                                                                                                                              Null?    Type
+ ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ WORKER_ID                                                                                                                                                                                                                                                                                                                                                                         NOT NULL VARCHAR2(5)
+ NAME                                                                                                                                                                                                                                                                                                                                                                                       VARCHAR2(20)
+ DOB                                                                                                                                                                                                                                                                                                                                                                                        DATE
+ GENDER                                                                                                                                                                                                                                                                                                                                                                                     VARCHAR2(10)
+ ADDRESS                                                                                                                                                                                                                                                                                                                                                                                    VARCHAR2(30)
+ AGE                                                                                                                                                                                                                                                                                                                                                                                        NUMBER(2)
+ MOBILE_NO                                                                                                                                                                                                                                                                                                                                                                         NOT NULL NUMBER(10)
+ DEPT_ID                                                                                                                                                                                                                                                                                                                                                                                    NUMBER
+ SECTION                                                                                                                                                                                                                                                                                                                                                                                    VARCHAR2(20)
+ SALARY                                                                                                                                                                                                                                                                                                                                                                                     NUMBER(5)
+
+SQL> set pagesize 600
+SQL> desc worker;
+ Name                                                                                                                                                                                                                                                                                                                                                                              Null?    Type
+ ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ WORKER_ID                                                                                                                                                                                                                                                                                                                                                                         NOT NULL VARCHAR2(5)
+ NAME                                                                                                                                                                                                                                                                                                                                                                                       VARCHAR2(20)
+ DOB                                                                                                                                                                                                                                                                                                                                                                                        DATE
+ GENDER                                                                                                                                                                                                                                                                                                                                                                                     VARCHAR2(10)
+ ADDRESS                                                                                                                                                                                                                                                                                                                                                                                    VARCHAR2(30)
+ AGE                                                                                                                                                                                                                                                                                                                                                                                        NUMBER(2)
+ MOBILE_NO                                                                                                                                                                                                                                                                                                                                                                         NOT NULL NUMBER(10)
+ DEPT_ID                                                                                                                                                                                                                                                                                                                                                                                    NUMBER
+ SECTION                                                                                                                                                                                                                                                                                                                                                                                    VARCHAR2(20)
+ SALARY                                                                                                                                                                                                                                                                                                                                                                                     NUMBER(5)
+
+SQL> set pagesize 30
+SQL> desc worker;
+ Name                                                                                                                                                                                                                                                                                                                                                                              Null?    Type
+ ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ WORKER_ID                                                                                                                                                                                                                                                                                                                                                                         NOT NULL VARCHAR2(5)
+ NAME                                                                                                                                                                                                                                                                                                                                                                                       VARCHAR2(20)
+ DOB                                                                                                                                                                                                                                                                                                                                                                                        DATE
+ GENDER                                                                                                                                                                                                                                                                                                                                                                                     VARCHAR2(10)
+ ADDRESS                                                                                                                                                                                                                                                                                                                                                                                    VARCHAR2(30)
+ AGE                                                                                                                                                                                                                                                                                                                                                                                        NUMBER(2)
+ MOBILE_NO                                                                                                                                                                                                                                                                                                                                                                         NOT NULL NUMBER(10)
+ DEPT_ID                                                                                                                                                                                                                                                                                                                                                                                    NUMBER
+ SECTION                                                                                                                                                                                                                                                                                                                                                                                    VARCHAR2(20)
+ SALARY                                                                                                                                                                                                                                                                                                                                                                                     NUMBER(5)
+
+SQL> CREATE TABLE ITEM_DETAILS
+  2  (
+  3  Item_id number(5) primary key,
+  4  Item_name varchar2(30) NOT NULL,
+  5  Item_type varchar2(30),
+  6  Item_colour varchar2(20),
+  7  Price number(4),
+  8  Brand varchar2(20),
+  9  Item_size VARCHAR2(10)
+ 10  );
+
+Table created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1120,'Shirt','MensWear','Red',700,'OTTO','M');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1121,'Shirt','MensWear','Black',900,'RAMRAJ','XL');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1122,'Shirt','MensWear','Grey',750,'Xcess',S);
+INSERT INTO ITEM_DETAILS VALUES(1122,'Shirt','MensWear','Grey',750,'Xcess',S)
+                                                                           *
+ERROR at line 1:
+ORA-00984: column not allowed here
+
+
+SQL>
+SQL> INSERT INTO ITEM_DETAILS VALUES(1123,'Shirt','MensWear','Light Green',1000,'Denim','XL');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1124,'Shirt','MensWear','White',700,'Solley','XXL');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1125,'Shirt','MensWear','Dark Red',1700,'PETER ENGLAND','M');
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO ITEM_DETAILS(Item_id ,Item_name,Item_type,Item_colour,Price)
+  2                    VALUES(1126,' Cotton Saree','Womens Wear','Black',700);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO ITEM_DETAILS(Item_id,Item_name,Item_type,Item_colour,Price)
+  2                    VALUES(1127,' Silk Saree','Womens Wear','pink',500);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO ITEM_DETAILS(Item_id ,Item_name,Item_type,Item_colour,Price)
+  2                    VALUES(1128,'Cotton Saree','Womens Wear','Grey',450);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO ITEM_DETAILS(Item_id ,Item_name,Item_type,Item_colour,Price)
+  2                    VALUES(1129,'Shifon Saree','Womens Wear','Blue',550);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO ITEM_DETAILS(Item_id ,Item_name,Item_type,Item_colour,Price)
+  2                    VALUES(1130,'Silk Saree','Womens Wear','Yellow',760);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO ITEM_DETAILS(Item_id ,Item_name,Item_type,Item_colour,Price)
+  2                    VALUES(1131,'Poonam Saree','Womens Wear','Greenish Yellow',560);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO ITEM_DETAILS(Item_id ,Item_name,Item_type,Item_colour,Price)
+  2                    VALUES(1132,'Cotton Saree','Womens Wear','Grey',450);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO ITEM_DETAILS VALUES(1133,'pant','MensWear','Black',700,'OTTO',38);
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1134,'pant','MensWear','White',900,'MOTHI',36);
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1135,'Pant','MensWear','Grey',750,'XCESS',40);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO ITEM_DETAILS VALUES(1136,'Kids shirt','KidsWear','Red',400,'OTTO','M');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1137,'Kids shirt','KidsWear','Black',900,'RAMRAJ','XL');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1138,'Kids shirt','KidsWear','Grey',750,'Xcess',S);
+INSERT INTO ITEM_DETAILS VALUES(1138,'Kids shirt','KidsWear','Grey',750,'Xcess',S)
+                                                                                *
+ERROR at line 1:
+ORA-00984: column not allowed here
+
+
+SQL>
+SQL> INSERT INTO ITEM_DETAILS VALUES(1139,'Kids suit','kidsWear','Dark Black',700,'OTTO','M');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1140,'Kids suit','kidsWear','Light Blue',900,'RAMRAJ','XL');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1141,'Kids suit','kidsWear','Navy Blue',750,'Xcess','S');
+
+1 row created.
+
+SQL> select * from item_details;
+
+   ITEM_ID ITEM_NAME                      ITEM_TYPE                      ITEM_COLOUR               PRICE BRAND                ITEM_SIZE
+---------- ------------------------------ ------------------------------ -------------------- ---------- -------------------- ----------
+      1120 Shirt                          MensWear                       Red                         700 OTTO                 M
+      1121 Shirt                          MensWear                       Black                       900 RAMRAJ               XL
+      1123 Shirt                          MensWear                       Light Green                1000 Denim                XL
+      1124 Shirt                          MensWear                       White                       700 Solley               XXL
+      1125 Shirt                          MensWear                       Dark Red                   1700 PETER ENGLAND        M
+      1126  Cotton Saree                  Womens Wear                    Black                       700
+      1127  Silk Saree                    Womens Wear                    pink                        500
+      1128 Cotton Saree                   Womens Wear                    Grey                        450
+      1129 Shifon Saree                   Womens Wear                    Blue                        550
+      1130 Silk Saree                     Womens Wear                    Yellow                      760
+      1131 Poonam Saree                   Womens Wear                    Greenish Yellow             560
+      1132 Cotton Saree                   Womens Wear                    Grey                        450
+      1133 pant                           MensWear                       Black                       700 OTTO                 38
+      1134 pant                           MensWear                       White                       900 MOTHI                36
+      1135 Pant                           MensWear                       Grey                        750 XCESS                40
+      1136 Kids shirt                     KidsWear                       Red                         400 OTTO                 M
+      1137 Kids shirt                     KidsWear                       Black                       900 RAMRAJ               XL
+      1139 Kids suit                      kidsWear                       Dark Black                  700 OTTO                 M
+      1140 Kids suit                      kidsWear                       Light Blue                  900 RAMRAJ               XL
+      1141 Kids suit                      kidsWear                       Navy Blue                   750 Xcess                S
+
+20 rows selected.
+
+SQL> CREATE TABLE CUSTOMER
+  2  (
+  3  Bill_id number(5) primary key,
+  4  Date_of_purchase date,
+  5  Customer_name varchar2(20),
+  6  Mobile_no number(10) NOT NULL,
+  7  Mode_of_payment varchar2(20),
+  8  Total_amount number(5)
+  9  );
+
+Table created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10021,'21-AUG-2019','Ramya',9878656554,'Cash',3260);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(10022,'21-AUG-2019','Leela',9878000754,'Cash',1210);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10023,'22-AUG-2019','Ram',9000002154,'Cash',770);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(10024,'22-AUG-2019','Lokesh',6321768542,'Cash',1360);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10025,'23-AUG-2019','Harry',9944032440,'Cash',1820);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(10026,'23-AUG-2019','Leena',6398798732,'Credit Card',780);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10027,'24-AUG-2019','Kishore',6321768542,'Cash',1840);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(10028,'24-AUG-2019','Kumar',9025828799,'Cash',2235);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10029,'25-AUG-2019','Dinesh',9025873190,'Cash',1030);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(10030,'25-AUG-2019','Ashok',9944032440,'Cash',1590);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10031,'26-AUG-2019','Raj',9875625311,'Cash',710);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(10032,'26-AUG-2019','Thilak',6321761234,'Cash',1480);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10033,'27-AUG-2019','Martin',9872087529,'Cash',700);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(10034,'27-AUG-2019','Malini',8072076518,'Credit card',980);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10035,'28-AUG-2019','Pooja',7539908699,'Cash',910);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(10036,'28-AUG-2019','Neha',9876543210,'Debit card',1920);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10037,'29-AUG-2019','Malar',6375735286,'Cash',2630);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(10038,'29-AUG-2019','Mala',7708817687,'Cash',580);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10039,'30-AUG-2019','Sarika',9387676587,'Cash',450);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10040,'01-SEP-2019','Malini',8072076518,'Cash',1520);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(10041,'01-SEP-2019','Adams',9180767659,'Cash',555);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10042,'02-SEP-2019','Dos',8072073214,'Cash',920);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(10043,'02-SEP-2019','Velu',8072076878,'debit card',760);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10044,'03-SEP-2019','Senthil',7708810573,'Credit card',1160);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(10045,'03-SEP-2019','Sagar',7708670765,'Cash',700);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10046,'04-SEP-2019','Ranga',9977665544,'Credit card',1300);
+
+1 row created.
+
+SQL> select * from customer;
+
+   BILL_ID DATE_OF_P CUSTOMER_NAME         MOBILE_NO MODE_OF_PAYMENT      TOTAL_AMOUNT
+---------- --------- -------------------- ---------- -------------------- ------------
+     10021 21-AUG-19 Ramya                9878656554 Cash                         3260
+     10022 21-AUG-19 Leela                9878000754 Cash                         1210
+     10023 22-AUG-19 Ram                  9000002154 Cash                          770
+     10024 22-AUG-19 Lokesh               6321768542 Cash                         1360
+     10025 23-AUG-19 Harry                9944032440 Cash                         1820
+     10026 23-AUG-19 Leena                6398798732 Credit Card                   780
+     10027 24-AUG-19 Kishore              6321768542 Cash                         1840
+     10028 24-AUG-19 Kumar                9025828799 Cash                         2235
+     10029 25-AUG-19 Dinesh               9025873190 Cash                         1030
+     10030 25-AUG-19 Ashok                9944032440 Cash                         1590
+     10031 26-AUG-19 Raj                  9875625311 Cash                          710
+     10032 26-AUG-19 Thilak               6321761234 Cash                         1480
+     10033 27-AUG-19 Martin               9872087529 Cash                          700
+     10034 27-AUG-19 Malini               8072076518 Credit card                   980
+     10035 28-AUG-19 Pooja                7539908699 Cash                          910
+     10036 28-AUG-19 Neha                 9876543210 Debit card                   1920
+     10037 29-AUG-19 Malar                6375735286 Cash                         2630
+     10038 29-AUG-19 Mala                 7708817687 Cash                          580
+     10039 30-AUG-19 Sarika               9387676587 Cash                          450
+     10040 01-SEP-19 Malini               8072076518 Cash                         1520
+     10041 01-SEP-19 Adams                9180767659 Cash                          555
+     10042 02-SEP-19 Dos                  8072073214 Cash                          920
+     10043 02-SEP-19 Velu                 8072076878 debit card                    760
+     10044 03-SEP-19 Senthil              7708810573 Credit card                  1160
+     10045 03-SEP-19 Sagar                7708670765 Cash                          700
+     10046 04-SEP-19 Ranga                9977665544 Credit card                  1300
+
+26 rows selected.
+
+SQL> CREATE TABLE PURCHASE_ITEM_DETAILS
+  2  (
+  3  Bill_id number(10),
+  4  Item_id number(5),
+  5  Quantity number(3),
+  6  Price number(4),
+  7  Tax number(3),
+  8  Amount number(5),
+  9  constraint item_id Foreign key(Item_id) references Item_details(Item_id),
+ 10  constraint Bill Foreign key(Bill_id) references Customer(Bill_id)
+ 11  );
+
+Table created.
+
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10021,1120,2,700,50,1450);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10021,1120,2,700,50,1450)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10021,1121,2,900,10,1810);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10021,1121,2,900,10,1810)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL>
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10022,1127,1,500,5,505);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10022,1127,1,500,5,505)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10022,1126,1,700,5,705);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10022,1126,1,700,5,705)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL>
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10023,1135,1,750,20,770);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10023,1135,1,750,20,770)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL>
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10024,1130,1,760,20,780);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10024,1130,1,760,20,780)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10024,1131,1,560,20,580);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10024,1131,1,560,20,580)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL>
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10025,1137,2,900,20,1820);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10025,1137,2,900,20,1820)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL>
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10026,1130,1,760,20,780);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10026,1130,1,760,20,780)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL>
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10027,1123,1,1000,20,1020);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10027,1123,1,1000,20,1020)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10027,1136,2,400,20,820);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10027,1136,2,400,20,820)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL>
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10028,1129,1,550,10,560);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10028,1129,1,550,10,560)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10028,1135,1,750,5,755);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10028,1135,1,750,5,755)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10028,1137,1,900,20,920);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10028,1137,1,900,20,920)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL>
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10029,1131,1,560,20,580);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10029,1131,1,560,20,580)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10029,1132,1,450,0,450);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10029,1132,1,450,0,450)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL>
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10030,1131,1,560,10,570);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10030,1131,1,560,10,570)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10030,1123,1,1000,20,1020);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10030,1123,1,1000,20,1020)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL>
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10031,1139,1,700,10,710);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10031,1139,1,700,10,710)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL>
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10032,1141,1,700,10,710);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10032,1141,1,700,10,710)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10032,1135,1,750,20,770);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10032,1135,1,750,20,770)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL>
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10033,1124,1,700,0,700);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10033,1124,1,700,0,700)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL>
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10034,1127,1,500,10,510);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10034,1127,1,500,10,510)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10034,1128,1,450,20,470);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10034,1128,1,450,20,470)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL>
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10035,1121,1,900,10,910);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10035,1121,1,900,10,910)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL>
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10036,1123,1,1000,20,1020);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10036,1123,1,1000,20,1020)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10036,1121,1,900,0,900);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10036,1121,1,900,0,900)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL>
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10037,1125,1,1700,20,1720);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10037,1125,1,1700,20,1720)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10037,1121,1,900,10,910);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10037,1121,1,900,10,910)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL>
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10038,1131,1,560,20,580);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10038,1131,1,560,20,580)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL>
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10039,1132,1,450,0,450);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10039,1132,1,450,0,450)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL>
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10040,1122,2,750,20,1520);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10040,1122,2,750,20,1520)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL>
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10041,1129,1,550,5,555);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10041,1129,1,550,5,555)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL>
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10042,1137,1,900,20,920);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10042,1137,1,900,20,920)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL>
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10043,1141,1,750,10,760);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10043,1141,1,750,10,760)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL>
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10044,1132,1,450,0,400);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10044,1132,1,450,0,400)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10044,1122,1,750,10,760);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10044,1122,1,750,10,760)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL>
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10045,1124,1,700,0,700);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10045,1124,1,700,0,700)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL>
+SQL> INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10046,1131,1,560,20,580);
+INSERT INOT PURCHASE_ITEM_DETILAS VALUES(10046,1131,1,560,20,580)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL> INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10021,1120,2,700,50,1450);
+INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10021,1120,2,700,50,1450)
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10021,1121,2,900,10,1810);
+INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10021,1121,2,900,10,1810)
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10022,1127,1,500,5,505);
+INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10022,1127,1,500,5,505)
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10022,1126,1,700,5,705);
+INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10022,1126,1,700,5,705)
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10023,1135,1,750,20,770);
+INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10023,1135,1,750,20,770)
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10024,1130,1,760,20,780);
+INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10024,1130,1,760,20,780)
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10024,1131,1,560,20,580);
+INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10024,1131,1,560,20,580)
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10025,1137,2,900,20,1820);
+INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10025,1137,2,900,20,1820)
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10026,1130,1,760,20,780);
+INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10026,1130,1,760,20,780)
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10027,1123,1,1000,20,1020);
+INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10027,1123,1,1000,20,1020)
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10027,1136,2,400,20,820);
+INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10027,1136,2,400,20,820)
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10028,1129,1,550,10,560);
+INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10028,1129,1,550,10,560)
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10028,1135,1,750,5,755);
+INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10028,1135,1,750,5,755)
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10028,1137,1,900,20,920);
+INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10028,1137,1,900,20,920)
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10029,1131,1,560,20,580);
+INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10029,1131,1,560,20,580)
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10029,1132,1,450,0,450);
+INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10029,1132,1,450,0,450)
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10030,1131,1,560,10,570);
+INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10030,1131,1,560,10,570)
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10030,1123,1,1000,20,1020);
+INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10030,1123,1,1000,20,1020)
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10031,1139,1,700,10,710);
+INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10031,1139,1,700,10,710)
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETILAS VALUES(10032,1141,1,700,10,710);
+INSERT INTO  PURCHASE_ITEM_DETILAS VALUES(10032,1141,1,700,10,710)
+             *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> INSERT INTO  PURCHASE_ITEM_DETILAS VALUES(10032,1135,1,750,20,770);
+INSERT INTO  PURCHASE_ITEM_DETILAS VALUES(10032,1135,1,750,20,770)
+             *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETILAS VALUES(10033,1124,1,700,0,700);
+INSERT INTO  PURCHASE_ITEM_DETILAS VALUES(10033,1124,1,700,0,700)
+             *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETILAS VALUES(10034,1127,1,500,10,510);
+INSERT INTO  PURCHASE_ITEM_DETILAS VALUES(10034,1127,1,500,10,510)
+             *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> INSERT INTO  PURCHASE_ITEM_DETILAS VALUES(10034,1128,1,450,20,470);
+INSERT INTO  PURCHASE_ITEM_DETILAS VALUES(10034,1128,1,450,20,470)
+             *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETILAS VALUES(10035,1121,1,900,10,910);
+INSERT INTO  PURCHASE_ITEM_DETILAS VALUES(10035,1121,1,900,10,910)
+             *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETILAS VALUES(10036,1123,1,1000,20,1020);
+INSERT INTO  PURCHASE_ITEM_DETILAS VALUES(10036,1123,1,1000,20,1020)
+             *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> INSERT INTO  PURCHASE_ITEM_DETILAS VALUES(10036,1121,1,900,0,900);
+INSERT INTO  PURCHASE_ITEM_DETILAS VALUES(10036,1121,1,900,0,900)
+             *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETILAS VALUES(10037,1125,1,1700,20,1720);
+INSERT INTO  PURCHASE_ITEM_DETILAS VALUES(10037,1125,1,1700,20,1720)
+             *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> INSERT INTO  PURCHASE_ITEM_DETILAS VALUES(10037,1121,1,900,10,910);
+INSERT INTO  PURCHASE_ITEM_DETILAS VALUES(10037,1121,1,900,10,910)
+             *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETILAS VALUES(10038,1131,1,560,20,580);
+INSERT INTO  PURCHASE_ITEM_DETILAS VALUES(10038,1131,1,560,20,580)
+             *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10039,1132,1,450,0,450);
+INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10039,1132,1,450,0,450)
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETILAS VALUES(10040,1122,2,750,20,1520);
+INSERT INTO  PURCHASE_ITEM_DETILAS VALUES(10040,1122,2,750,20,1520)
+             *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10041,1129,1,550,5,555);
+INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10041,1129,1,550,5,555)
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETILAS VALUES(10042,1137,1,900,20,920);
+INSERT INTO  PURCHASE_ITEM_DETILAS VALUES(10042,1137,1,900,20,920)
+             *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETILAS VALUES(10043,1141,1,750,10,760);
+INSERT INTO  PURCHASE_ITEM_DETILAS VALUES(10043,1141,1,750,10,760)
+             *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10044,1132,1,450,0,400);
+INSERT INTO PURCHASE_ITEM_DETILAS VALUES(10044,1132,1,450,0,400)
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> INSERT INTO  PURCHASE_ITEM_DETILAS VALUES(10044,1122,1,750,10,760);
+INSERT INTO  PURCHASE_ITEM_DETILAS VALUES(10044,1122,1,750,10,760)
+             *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETILAS VALUES(10045,1124,1,700,0,700);
+INSERT INTO  PURCHASE_ITEM_DETILAS VALUES(10045,1124,1,700,0,700)
+             *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETILAS VALUES(10046,1131,1,560,20,580);
+INSERT INTO  PURCHASE_ITEM_DETILAS VALUES(10046,1131,1,560,20,580)
+             *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10021,1120,2,700,50,1450);
+
+1 row created.
+
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10021,1121,2,900,10,1810);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10022,1127,1,500,5,505);
+
+1 row created.
+
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10022,1126,1,700,5,705);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10023,1135,1,750,20,770);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10024,1130,1,760,20,780);
+
+1 row created.
+
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10024,1131,1,560,20,580);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10025,1137,2,900,20,1820);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10026,1130,1,760,20,780);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10027,1123,1,1000,20,1020);
+
+1 row created.
+
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10027,1136,2,400,20,820);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10028,1129,1,550,10,560);
+
+1 row created.
+
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10028,1135,1,750,5,755);
+
+1 row created.
+
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10028,1137,1,900,20,920);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10029,1131,1,560,20,580);
+
+1 row created.
+
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10029,1132,1,450,0,450);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10030,1131,1,560,10,570);
+
+1 row created.
+
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10030,1123,1,1000,20,1020);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10031,1139,1,700,10,710);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10032,1141,1,700,10,710);
+
+1 row created.
+
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10032,1135,1,750,20,770);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10033,1124,1,700,0,700);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10034,1127,1,500,10,510);
+
+1 row created.
+
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10034,1128,1,450,20,470);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10035,1121,1,900,10,910);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10036,1123,1,1000,20,1020);
+
+1 row created.
+
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10036,1121,1,900,0,900);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10037,1125,1,1700,20,1720);
+
+1 row created.
+
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10037,1121,1,900,10,910);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10038,1131,1,560,20,580);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10039,1132,1,450,0,450);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10040,1122,2,750,20,1520);
+INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10040,1122,2,750,20,1520)
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (SCOT.ITEM_ID) violated - parent key not found
+
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10041,1129,1,550,5,555);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10042,1137,1,900,20,920);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10043,1141,1,750,10,760);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10044,1132,1,450,0,400);
+
+1 row created.
+
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10044,1122,1,750,10,760);
+INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10044,1122,1,750,10,760)
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (SCOT.ITEM_ID) violated - parent key not found
+
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10045,1124,1,700,0,700);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10046,1131,1,560,20,580);
+
+1 row created.
+
+SQL> select * from purchase_item_details;
+
+   BILL_ID    ITEM_ID   QUANTITY      PRICE        TAX     AMOUNT
+---------- ---------- ---------- ---------- ---------- ----------
+     10021       1120          2        700         50       1450
+     10021       1121          2        900         10       1810
+     10022       1127          1        500          5        505
+     10022       1126          1        700          5        705
+     10023       1135          1        750         20        770
+     10024       1130          1        760         20        780
+     10024       1131          1        560         20        580
+     10025       1137          2        900         20       1820
+     10026       1130          1        760         20        780
+     10027       1123          1       1000         20       1020
+     10027       1136          2        400         20        820
+     10028       1129          1        550         10        560
+     10028       1135          1        750          5        755
+     10028       1137          1        900         20        920
+     10029       1131          1        560         20        580
+     10029       1132          1        450          0        450
+     10030       1131          1        560         10        570
+     10030       1123          1       1000         20       1020
+     10031       1139          1        700         10        710
+     10032       1141          1        700         10        710
+     10032       1135          1        750         20        770
+     10033       1124          1        700          0        700
+     10034       1127          1        500         10        510
+     10034       1128          1        450         20        470
+     10035       1121          1        900         10        910
+     10036       1123          1       1000         20       1020
+     10036       1121          1        900          0        900
+
+   BILL_ID    ITEM_ID   QUANTITY      PRICE        TAX     AMOUNT
+---------- ---------- ---------- ---------- ---------- ----------
+     10037       1125          1       1700         20       1720
+     10037       1121          1        900         10        910
+     10038       1131          1        560         20        580
+     10039       1132          1        450          0        450
+     10041       1129          1        550          5        555
+     10042       1137          1        900         20        920
+     10043       1141          1        750         10        760
+     10044       1132          1        450          0        400
+     10045       1124          1        700          0        700
+     10046       1131          1        560         20        580
+
+37 rows selected.
+
+SQL> set pagesize 60
+SQL> set linesize 120
+SQL> select * from purchase_item_details;
+
+   BILL_ID    ITEM_ID   QUANTITY      PRICE        TAX     AMOUNT
+---------- ---------- ---------- ---------- ---------- ----------
+     10021       1120          2        700         50       1450
+     10021       1121          2        900         10       1810
+     10022       1127          1        500          5        505
+     10022       1126          1        700          5        705
+     10023       1135          1        750         20        770
+     10024       1130          1        760         20        780
+     10024       1131          1        560         20        580
+     10025       1137          2        900         20       1820
+     10026       1130          1        760         20        780
+     10027       1123          1       1000         20       1020
+     10027       1136          2        400         20        820
+     10028       1129          1        550         10        560
+     10028       1135          1        750          5        755
+     10028       1137          1        900         20        920
+     10029       1131          1        560         20        580
+     10029       1132          1        450          0        450
+     10030       1131          1        560         10        570
+     10030       1123          1       1000         20       1020
+     10031       1139          1        700         10        710
+     10032       1141          1        700         10        710
+     10032       1135          1        750         20        770
+     10033       1124          1        700          0        700
+     10034       1127          1        500         10        510
+     10034       1128          1        450         20        470
+     10035       1121          1        900         10        910
+     10036       1123          1       1000         20       1020
+     10036       1121          1        900          0        900
+     10037       1125          1       1700         20       1720
+     10037       1121          1        900         10        910
+     10038       1131          1        560         20        580
+     10039       1132          1        450          0        450
+     10041       1129          1        550          5        555
+     10042       1137          1        900         20        920
+     10043       1141          1        750         10        760
+     10044       1132          1        450          0        400
+     10045       1124          1        700          0        700
+     10046       1131          1        560         20        580
+
+37 rows selected.
+
+SQL> select item_name,item_id,amount from item_details i join customer c where (i.bill_id=c.bill_id);
+select item_name,item_id,amount from item_details i join customer c where (i.bill_id=c.bill_id)
+                                                                    *
+ERROR at line 1:
+ORA-00905: missing keyword
+
+
+SQL> select item_name,item_id,amount from item_details i join customer c on(i.bill_id=c.bill_id);
+select item_name,item_id,amount from item_details i join customer c on(i.bill_id=c.bill_id)
+                                                                       *
+ERROR at line 1:
+ORA-00904: "I"."BILL_ID": invalid identifier
+
+
+SQL> select i.item_name,i.item_id,i.amount from purcahse_item_details i join customer c on(i.bill_id=c.bill_id);
+select i.item_name,i.item_id,i.amount from purcahse_item_details i join customer c on(i.bill_id=c.bill_id)
+                                           *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> select i.item_name,i.item_id,i.amount from purchase_item_details i join customer c on(i.bill_id=c.bill_id);
+select i.item_name,i.item_id,i.amount from purchase_item_details i join customer c on(i.bill_id=c.bill_id)
+       *
+ERROR at line 1:
+ORA-00904: "I"."ITEM_NAME": invalid identifier
+
+
+SQL> select i.item_id,i.amount from purchase_item_details i join customer c on(i.bill_id=c.bill_id);
+
+   ITEM_ID     AMOUNT
+---------- ----------
+      1120       1450
+      1121       1810
+      1127        505
+      1126        705
+      1135        770
+      1130        780
+      1131        580
+      1137       1820
+      1130        780
+      1123       1020
+      1136        820
+      1129        560
+      1135        755
+      1137        920
+      1131        580
+      1132        450
+      1131        570
+      1123       1020
+      1139        710
+      1141        710
+      1135        770
+      1124        700
+      1127        510
+      1128        470
+      1121        910
+      1123       1020
+      1121        900
+      1125       1720
+      1121        910
+      1131        580
+      1132        450
+      1129        555
+      1137        920
+      1141        760
+      1132        400
+      1124        700
+      1131        580
+
+37 rows selected.
+
+SQL> select i.item_id,i.amount from purchase_item_details i join customer c;
+select i.item_id,i.amount from purchase_item_details i join customer c
+                                                                     *
+ERROR at line 1:
+ORA-00905: missing keyword
+
+
+SQL> select item_name,amount from purchase_item_details where bill_id=10021;
+select item_name,amount from purchase_item_details where bill_id=10021
+       *
+ERROR at line 1:
+ORA-00904: "ITEM_NAME": invalid identifier
+
+
+SQL> select item_name,amount from item_details where bill_id=10021;
+select item_name,amount from item_details where bill_id=10021
+                                                *
+ERROR at line 1:
+ORA-00904: "BILL_ID": invalid identifier
+
+
+SQL> select item_name,amount from item_details where item_id=1120;
+select item_name,amount from item_details where item_id=1120
+                 *
+ERROR at line 1:
+ORA-00904: "AMOUNT": invalid identifier
+
+
+SQL> select item_name from item_details where item_id=1120;
+
+ITEM_NAME
+------------------------------
+Shirt
+
+SQL> select i.item_name,c.amount from item_details i join purchase_item_details p join(c.bill_id=p.bill_id) join item_details i on(p.item_id=i.item_id);
+select i.item_name,c.amount from item_details i join purchase_item_details p join(c.bill_id=p.bill_id) join item_details i on(p.item_id=i.item_id)
+                                                                                           *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> select i.item_name,c.amount from item_details i join purchase_item_details p join(c.bill_id=p.bill_id) join item_details i on(p.item_id=i.item_id) having p.bill_id=10021;
+select i.item_name,c.amount from item_details i join purchase_item_details p join(c.bill_id=p.bill_id) join item_details i on(p.item_id=i.item_id) having p.bill_id=10021
+                                                                                           *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> select i.item_name,c.amount from customers c join purchase_item_details p join(c.bill_id=p.bill_id) join item_details i on(p.item_id=i.item_id) having p.bill_id=10021;
+select i.item_name,c.amount from customers c join purchase_item_details p join(c.bill_id=p.bill_id) join item_details i on(p.item_id=i.item_id) having p.bill_id=10021
+                                                                                        *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> select i.item_name,c.total_amount from customers c join purchase_item_details p join(c.Bill_id=p.Bill_id) join item_details i on(p.item_id=i.item_id) having p.bill_id=10021;
+select i.item_name,c.total_amount from customers c join purchase_item_details p join(c.Bill_id=p.Bill_id) join item_details i on(p.item_id=i.item_id) having p.bill_id=10021
+                                                                                              *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> select i.item_name,c.total_amount from customers c join purchase_item_details p join(p.Bill_id=c.Bill_id) join item_details i on(p.item_id=i.item_id) having p.bill_id=10021;
+select i.item_name,c.total_amount from customers c join purchase_item_details p join(p.Bill_id=c.Bill_id) join item_details i on(p.item_id=i.item_id) having p.bill_id=10021
+                                                                                              *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> select i.item_name,c.total_amount from customers c join purchase_item_details p join(c.Bill_id=p.Bill_id) join item_details i on(p.item_id=i.item_id);
+select i.item_name,c.total_amount from customers c join purchase_item_details p join(c.Bill_id=p.Bill_id) join item_details i on(p.item_id=i.item_id)
+                                                                                              *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> select i.item_name,c.total_amount from customers c join purchase_item_details p join (c.Bill_id=p.Bill_id) join item_details i on(p.item_id=i.item_id);
+select i.item_name,c.total_amount from customers c join purchase_item_details p join (c.Bill_id=p.Bill_id) join item_details i on(p.item_id=i.item_id)
+                                                                                               *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> select i.item_name,c.total_amount from customers c join purchase_item_details p join (c.Bill_id = p.Bill_id) join item_details i on(p.item_id=i.item_id);
+select i.item_name,c.total_amount from customers c join purchase_item_details p join (c.Bill_id = p.Bill_id) join item_details i on(p.item_id=i.item_id)
+                                                                                                *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> select customer_name from customer where bill_id=10021;
+
+CUSTOMER_NAME
+--------------------
+Ramya
+
+SQL> select customer_name from customer where bill_id=10022;
+
+CUSTOMER_NAME
+--------------------
+Leela
+
+SQL> select item_name from item_details i join purchase_item_details p on(p.bill_id=i.bill_id) having bill_id=10021;
+select item_name from item_details i join purchase_item_details p on(p.bill_id=i.bill_id) having bill_id=10021
+                                                                               *
+ERROR at line 1:
+ORA-00904: "I"."BILL_ID": invalid identifier
+
+
+SQL> select i.item_name from customer c join purchase_item_details p on(p.bill_id=c.bill_id) join item_details i on(i.item_id=p.item_id) having p.bill_id=10021;
+select i.item_name from customer c join purchase_item_details p on(p.bill_id=c.bill_id) join item_details i on(i.item_id=p.item_id) having p.bill_id=10021
+                                                                                                                                           *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression
+
+
+SQL> select i.item_name from customer c join purchase_item_details p on(p.bill_id=c.bill_id) join item_details i on(i.item_id=p.item_id);
+
+ITEM_NAME
+------------------------------
+Shirt
+Shirt
+ Silk Saree
+ Cotton Saree
+Pant
+Silk Saree
+Poonam Saree
+Kids shirt
+Silk Saree
+Shirt
+Kids shirt
+Shifon Saree
+Pant
+Kids shirt
+Poonam Saree
+Cotton Saree
+Poonam Saree
+Shirt
+Kids suit
+Kids suit
+Pant
+Shirt
+ Silk Saree
+Cotton Saree
+Shirt
+Shirt
+Shirt
+Shirt
+Shirt
+Poonam Saree
+Cotton Saree
+Shifon Saree
+Kids shirt
+Kids suit
+Cotton Saree
+Shirt
+Poonam Saree
+
+37 rows selected.
+
+SQL> select i.item_name from customer c join purchase_item_details p on(p.bill_id=c.bill_id) join item_details i on(i.item_id=p.item_id) having c.customer_name='Ramya';
+select i.item_name from customer c join purchase_item_details p on(p.bill_id=c.bill_id) join item_details i on(i.item_id=p.item_id) having c.customer_name='Ramya'
+                                                                                                                                           *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression
+
+
+SQL> select i.item_name from customer c join purchase_item_details p on(p.bill_id=c.bill_id) join item_details i on(i.item_id=p.item_id) where c.customer_name='Ramya';
+
+ITEM_NAME
+------------------------------
+Shirt
+Shirt
+
+SQL> select i.item_name,i.amount from customer c join purchase_item_details p on(p.bill_id=c.bill_id) join item_details i on(i.item_id=p.item_id) where c.customer_name='Ramya';
+select i.item_name,i.amount from customer c join purchase_item_details p on(p.bill_id=c.bill_id) join item_details i on(i.item_id=p.item_id) where c.customer_name='Ramya'
+                   *
+ERROR at line 1:
+ORA-00904: "I"."AMOUNT": invalid identifier
+
+
+SQL> select i.item_name,i.amount from customer c join purchase_item_details p on(p.bill_id=c.bill_id) join item_details i on(i.item_id=p.item_id) where c.customer_name='Ramya';
+select i.item_name,i.amount from customer c join purchase_item_details p on(p.bill_id=c.bill_id) join item_details i on(i.item_id=p.item_id) where c.customer_name='Ramya'
+                   *
+ERROR at line 1:
+ORA-00904: "I"."AMOUNT": invalid identifier
+
+
+SQL> desc item_details;
+ Name                                                              Null?    Type
+ ----------------------------------------------------------------- -------- --------------------------------------------
+ ITEM_ID                                                           NOT NULL NUMBER(5)
+ ITEM_NAME                                                         NOT NULL VARCHAR2(30)
+ ITEM_TYPE                                                                  VARCHAR2(30)
+ ITEM_COLOUR                                                                VARCHAR2(20)
+ PRICE                                                                      NUMBER(4)
+ BRAND                                                                      VARCHAR2(20)
+ ITEM_SIZE                                                                  VARCHAR2(10)
+
+SQL> desc purchase_item_details;
+ Name                                                              Null?    Type
+ ----------------------------------------------------------------- -------- --------------------------------------------
+ BILL_ID                                                                    NUMBER(10)
+ ITEM_ID                                                                    NUMBER(5)
+ QUANTITY                                                                   NUMBER(3)
+ PRICE                                                                      NUMBER(4)
+ TAX                                                                        NUMBER(3)
+ AMOUNT                                                                     NUMBER(5)
+
+SQL> select i.item_name,p.amount from customer c join purchase_item_details p on(p.bill_id=c.bill_id) join item_details i on(i.item_id=p.item_id) where c.customer_name='Ramya';
+
+ITEM_NAME                          AMOUNT
+------------------------------ ----------
+Shirt                                1450
+Shirt                                1810
+
+SQL> select i.item_name,p.amount,c.total_amount from customer c join purchase_item_details p on(p.bill_id=c.bill_id) join item_details i on(i.item_id=p.item_id) where c.customer_name='Ramya';
+
+ITEM_NAME                          AMOUNT TOTAL_AMOUNT
+------------------------------ ---------- ------------
+Shirt                                1450         3260
+Shirt                                1810         3260
+
+SQL> select c.total_amount from customer c join purchase_item_details p on(p.bill_id=c.bill_id) join item_details i on(i.item_id=p.item_id) where c.customer_name='Ramya';
+
+TOTAL_AMOUNT
+------------
+        3260
+        3260
+
+SQL> select c.total_amount from customer c join purchase_item_details p on(p.bill_id=c.bill_id) where c.customer_name='Ramya';
+
+TOTAL_AMOUNT
+------------
+        3260
+        3260
+
+SQL> select total_amount from customer;
+
+TOTAL_AMOUNT
+------------
+        3260
+        1210
+         770
+        1360
+        1820
+         780
+        1840
+        2235
+        1030
+        1590
+         710
+        1480
+         700
+         980
+         910
+        1920
+        2630
+         580
+         450
+        1520
+         555
+         920
+         760
+        1160
+         700
+        1300
+
+26 rows selected.
+
+SQL> select total_amount from customer where bill_id=10023;
+
+TOTAL_AMOUNT
+------------
+         770
+
+SQL> select bill_id,total_amount from customer where bill_id=10023;
+
+   BILL_ID TOTAL_AMOUNT
+---------- ------------
+     10023          770
+
+SQL> select count(bill_id) from customer where date='29-AUG-2019';
+select count(bill_id) from customer where date='29-AUG-2019'
+                                          *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> select count(bill_id) from customer where date_of_purchase='29-AUG-2019';
+
+COUNT(BILL_ID)
+--------------
+             2
+
+SQL> select bill_id from customer where date_of_purchase='29-AUG-2019';
+
+   BILL_ID
+----------
+     10037
+     10038
+
+SQL> select bill_id,customer_name from customer where date_of_purchase='29-AUG-2019';
+
+   BILL_ID CUSTOMER_NAME
+---------- --------------------
+     10037 Malar
+     10038 Mala
+
+SQL> select bill_id,customer_name from customer where date_of_purchase='02-AUG-2019';
+
+no rows selected
+
+SQL> select bill_id,customer_name from customer where date_of_purchase='02-SEP-2019';
+
+   BILL_ID CUSTOMER_NAME
+---------- --------------------
+     10042 Dos
+     10043 Velu
+
+SQL> select sum(total_amount) from customer where date_of_purchase='02-SEP-2019';
+
+SUM(TOTAL_AMOUNT)
+-----------------
+             1680
+
+SQL> select total_amount from customer where date_of_purchase='02-SEP-2019';
+
+TOTAL_AMOUNT
+------------
+         920
+         760
+
+SQL> select sum(total_amount) from customer where date_of_purchase='02-SEP-2019';
+
+SUM(TOTAL_AMOUNT)
+-----------------
+             1680
+
+SQL> select count(item_id) from purchase_item-details where item_id=1120;
+select count(item_id) from purchase_item-details where item_id=1120
+                                        *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> select count(item_id) from purchase_item_details where item_id=1120;
+
+COUNT(ITEM_ID)
+--------------
+             1
+
+SQL> select count(item_id) from purchase_item_details where item_id=1125;
+
+COUNT(ITEM_ID)
+--------------
+             1
+
+SQL> select count(item_id) from purchase_item_details where item_id=1129;
+
+COUNT(ITEM_ID)
+--------------
+             2
+
+SQL> select count(item_id) from purchase_item_details where item_name='Shirt';
+select count(item_id) from purchase_item_details where item_name='Shirt'
+                                                       *
+ERROR at line 1:
+ORA-00904: "ITEM_NAME": invalid identifier
+
+
+SQL> select count(item_id) from purchase_item_details p join item_details i on(p.item_id=i.item_id) where item_name='Shirt';
+select count(item_id) from purchase_item_details p join item_details i on(p.item_id=i.item_id) where item_name='Shirt'
+             *
+ERROR at line 1:
+ORA-00918: column ambiguously defined
+
+
+SQL> select count(i.item_id) from purchase_item_details p join item_details i on(p.item_id=i.item_id) where item_name='Shirt';
+
+COUNT(I.ITEM_ID)
+----------------
+              11
+
+SQL> select count(p.item_id) from purchase_item_details p join item_details i on(p.item_id=i.item_id) where item_name='Shirt';
+
+COUNT(P.ITEM_ID)
+----------------
+              11
+
+SQL> select count(p.item_id) from purchase_item_details p join item_details i on(p.item_id=i.item_id) where i.item_name='Shirt';
+
+COUNT(P.ITEM_ID)
+----------------
+              11
+
+SQL> select count(item_id) from  item_details  where item_name='Shirt';
+
+COUNT(ITEM_ID)
+--------------
+             5
+
+SQL> select count(item_id) from  purchase_item_details  where item_name='Shirt';
+select count(item_id) from  purchase_item_details  where item_name='Shirt'
+                                                         *
+ERROR at line 1:
+ORA-00904: "ITEM_NAME": invalid identifier
+
+
+SQL> select count(item_id) from  purchase_item_details p join item_details on(p.item_id=i.item_id) where item_name='Shirt';
+select count(item_id) from  purchase_item_details p join item_details on(p.item_id=i.item_id) where item_name='Shirt'
+                                                                                   *
+ERROR at line 1:
+ORA-00904: "I"."ITEM_ID": invalid identifier
+
+
+SQL> select count(i.item_id) from  purchase_item_details p join item_details i on(p.item_id=i.item_id) where item_name='Shirt';
+
+COUNT(I.ITEM_ID)
+----------------
+              11
+
+SQL> select count(worker_id) from worker where dept_id=10;
+
+COUNT(WORKER_ID)
+----------------
+               4
+
+SQL> select count(worker_id) from worker where dept_name='sales';
+select count(worker_id) from worker where dept_name='sales'
+                                          *
+ERROR at line 1:
+ORA-00904: "DEPT_NAME": invalid identifier
+
+
+SQL> select count(worker_id) from worker w join worker_department d on(w.worker_id=d.worker_id) where dept_name='sales';
+select count(worker_id) from worker w join worker_department d on(w.worker_id=d.worker_id) where dept_name='sales'
+                                                                              *
+ERROR at line 1:
+ORA-00904: "D"."WORKER_ID": invalid identifier
+
+
+SQL> select count(w.worker_id) from worker w join worker_department d on(w.worker_id=d.worker_id) where d.dept_name='sales';
+select count(w.worker_id) from worker w join worker_department d on(w.worker_id=d.worker_id) where d.dept_name='sales'
+                                                                                *
+ERROR at line 1:
+ORA-00904: "D"."WORKER_ID": invalid identifier
+
+
+SQL> select count(worker_id) from worker w join worker_department d on(w.worker_id=d.worker_id) where d.dept_name='sales';
+select count(worker_id) from worker w join worker_department d on(w.worker_id=d.worker_id) where d.dept_name='sales'
+                                                                              *
+ERROR at line 1:
+ORA-00904: "D"."WORKER_ID": invalid identifier
+
+
+SQL> select count(worker_id) from worker w join worker_department d on(w.dept_id=d.dept_id) where d.dept_name='sales';
+
+COUNT(WORKER_ID)
+----------------
+               0
+
+SQL> select count(worker_id) from worker w join worker_department d on(w.dept_id=d.dept_id) where d.dept_name='Sales';
+
+COUNT(WORKER_ID)
+----------------
+               4
+
+SQL> select distinct(section_name) from worker_department;
+select distinct(section_name) from worker_department
+                *
+ERROR at line 1:
+ORA-00904: "SECTION_NAME": invalid identifier
+
+
+SQL> select distinct(section) from worker_department;
+select distinct(section) from worker_department
+                *
+ERROR at line 1:
+ORA-00904: "SECTION": invalid identifier
+
+
+SQL> select distinct(section) from worker;
+
+SECTION
+--------------------
+Suit
+Kidswear
+Shirt
+Sarees
+
+SQL> select count(distinct(section)) from worker;
+
+COUNT(DISTINCT(SECTION))
+------------------------
+                       4
+
+SQL> select distinct(section) from worker;
+
+SECTION
+--------------------
+Suit
+Kidswear
+Shirt
+Sarees
+
+SQL> desc worker_department;
+ Name                                                              Null?    Type
+ ----------------------------------------------------------------- -------- --------------------------------------------
+ DEPT_ID                                                           NOT NULL NUMBER
+ DEPT_NAME                                                                  VARCHAR2(10)
+
+SQL> desc worker;
+ Name                                                              Null?    Type
+ ----------------------------------------------------------------- -------- --------------------------------------------
+ WORKER_ID                                                         NOT NULL VARCHAR2(5)
+ NAME                                                                       VARCHAR2(20)
+ DOB                                                                        DATE
+ GENDER                                                                     VARCHAR2(10)
+ ADDRESS                                                                    VARCHAR2(30)
+ AGE                                                                        NUMBER(2)
+ MOBILE_NO                                                         NOT NULL NUMBER(10)
+ DEPT_ID                                                                    NUMBER
+ SECTION                                                                    VARCHAR2(20)
+ SALARY                                                                     NUMBER(5)
+
+SQL> desc item_details;
+ Name                                                              Null?    Type
+ ----------------------------------------------------------------- -------- --------------------------------------------
+ ITEM_ID                                                           NOT NULL NUMBER(5)
+ ITEM_NAME                                                         NOT NULL VARCHAR2(30)
+ ITEM_TYPE                                                                  VARCHAR2(30)
+ ITEM_COLOUR                                                                VARCHAR2(20)
+ PRICE                                                                      NUMBER(4)
+ BRAND                                                                      VARCHAR2(20)
+ ITEM_SIZE                                                                  VARCHAR2(10)
+
+SQL> desc purchase_item_details;
+ Name                                                              Null?    Type
+ ----------------------------------------------------------------- -------- --------------------------------------------
+ BILL_ID                                                                    NUMBER(10)
+ ITEM_ID                                                                    NUMBER(5)
+ QUANTITY                                                                   NUMBER(3)
+ PRICE                                                                      NUMBER(4)
+ TAX                                                                        NUMBER(3)
+ AMOUNT                                                                     NUMBER(5)
+
+SQL> desc customer;
+ Name                                                              Null?    Type
+ ----------------------------------------------------------------- -------- --------------------------------------------
+ BILL_ID                                                           NOT NULL NUMBER(5)
+ DATE_OF_PURCHASE                                                           DATE
+ CUSTOMER_NAME                                                              VARCHAR2(20)
+ MOBILE_NO                                                         NOT NULL NUMBER(10)
+ MODE_OF_PAYMENT                                                            VARCHAR2(20)
+ TOTAL_AMOUNT                                                               NUMBER(5)
+
+SQL> drop table customer;
+drop table customer
+           *
+ERROR at line 1:
+ORA-02449: unique/primary keys in table referenced by foreign keys
+
+
+SQL> drop table worker_department;
+drop table worker_department
+           *
+ERROR at line 1:
+ORA-02449: unique/primary keys in table referenced by foreign keys
+
+
+SQL> drop table worker;
+
+Table dropped.
+
+SQL> drop table worker_department;
+
+Table dropped.
+
+SQL> drop table customer;
+drop table customer
+           *
+ERROR at line 1:
+ORA-02449: unique/primary keys in table referenced by foreign keys
+
+
+SQL> drop table purchase_item_details;
+
+Table dropped.
+
+SQL> drop table customer;
+
+Table dropped.
+
+SQL> drop table item_details;
+
+Table dropped.
+
+SQL> CREATE TABLE WORKER_DEPARTMENT
+  2  (
+  3  Dept_id number primary key,
+  4  Dept_name varchar2(10)
+  5  );
+
+Table created.
+
+SQL>
+SQL> INSERT INTO WORKER_DEPARTMENT VALUES(10,'Sales');
+
+1 row created.
+
+SQL> INSERT INTO WORKER_DEPARTMENT VALUES(20,'Supervisor');
+
+1 row created.
+
+SQL> INSERT INTO WORKER_DEPARTMENT VALUES(30,'Cleaning');
+
+1 row created.
+
+SQL> INSERT INTO WORKER_DEPARTMENT VALUES(40,'Cashier');
+
+1 row created.
+
+SQL> CREATE TABLE WORKER
+  2  (
+  3   worker_id VARCHAR2(5) primary key,
+  4   Name VARCHAR2(20),
+  5   dob DATE,
+  6   Gender varchar2(10),
+  7   Address VARCHAR2(30),
+  8   Age number(2),
+  9   Mobile_no number(10) NOT NULL,
+ 10   Dept_id number,
+ 11   Section varchar2(20),
+ 12   Salary number(5),
+ 13   constraint con_dept FOREIGN KEY(dept_id) REFERENCES WORKER_DEPARTMENT(Dept_id)
+ 14   );
+
+Table created.
+
+SQL>
+SQL> INSERT INTO WORKER VALUES(100,'Parker','29-JUN-1995','Male','NO-4 ,ABapartment OMR',24,9423543256,10,'Shirt',1500);
+
+1 row created.
+
+SQL> INSERT INTO WORKER VALUES(101,'Prathap','10-JUL-1994','Male','plot no 10,RAJ NAGAR OMR',25,9235432567,20,'Shirt',15000);
+
+1 row created.
+
+SQL> INSERT INTO WORKER VALUES(103,'Mani','08-APR-1990','Male','SS apartments OMR',29,9765746537,30,'Shirt',6000);
+
+1 row created.
+
+SQL> INSERT INTO WORKER VALUES(104,'Moris','23-SEP-1992','Male','SS apartments OMR',27,9765454578,40,'Shirt',9000);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO WORKER VALUES(105,'Malini','20-APR-1991','Female','KK Nagar OMR',28,8072076518,10,'Sarees',6000);
+
+1 row created.
+
+SQL> INSERT INTO WORKER VALUES(106,'Mahe','10-DEC-1991','Female','MM Nagar OMR',30,9994045035,20,'Sarees',15000);
+
+1 row created.
+
+SQL> INSERT INTO WORKER VALUES(107,'Shree','12-JAN-1994','Female','Sun lane TBM',24,8882207618,30,'Sarees',7800);
+
+1 row created.
+
+SQL> INSERT INTO WORKER VALUES(108,'Soniya','17-FEB-1994','Female','New SSR plot',24,9000290002,40,'Sarees',7900);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO WORKER VALUES(109,'Koushik','30-JUL-1994','Male','T nagar',24,8882207619,10,'Kidswear',7800);
+
+1 row created.
+
+SQL> INSERT INTO WORKER VALUES(110,'Harry','20-APR-1995','Male','ECR apartment,Navalur',23,9944032440,20,'Kidswear',16800);
+
+1 row created.
+
+SQL> INSERT INTO WORKER VALUES(111,'Mano','20-FEB-1993','Male','PP House,apt, OMR',25,9956785432,30,'Kidswear',6600);
+
+1 row created.
+
+SQL> INSERT INTO WORKER VALUES(112,'Sedhu','25-AUG-1994','Male','PP House,apt, OMR',24,8877653431,40,'Kidswear',8100);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO WORKER VALUES(113,'Sidhu','03-JUL-1994','Male','St no 10 OMR',24,9977880022,10,'Suit',7100);
+
+1 row created.
+
+SQL> INSERT INTO WORKER VALUES(114,'Hemanth','20-MAY-1992','Male','98 plotno,ac pt OMR',24,9977880077,20,'Suit',10000);
+
+1 row created.
+
+SQL> INSERT INTO WORKER VALUES(115,'Martin','20-JUN-1993','Male','Apt House, OMR',25,9872087529,30,'Suit',6000);
+
+1 row created.
+
+SQL> INSERT INTO WORKER VALUES(116,'Sudhakar','25-MAR-1994','Male','PCT House',24,9543295432,40,'Suit',7800);
+
+1 row created.
+
+SQL>
+SQL> CREATE TABLE ITEM_DETAILS
+  2  (
+  3  Item_id number(5) primary key,
+  4  Item_name varchar2(30) NOT NULL,
+  5  Item_type varchar2(30),
+  6  Item_colour varchar2(20),
+  7  Price number(4),
+  8  Brand varchar2(20),
+  9  Item_size VARCHAR2(10)
+ 10  );
+
+Table created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1120,'Shirt','MensWear','Red',700,'OTTO','M');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1121,'Shirt','MensWear','Black',900,'RAMRAJ','XL');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1122,'Shirt','MensWear','Grey',750,'Xcess',S);
+INSERT INTO ITEM_DETAILS VALUES(1122,'Shirt','MensWear','Grey',750,'Xcess',S)
+                                                                           *
+ERROR at line 1:
+ORA-00984: column not allowed here
+
+
+SQL>
+SQL> INSERT INTO ITEM_DETAILS VALUES(1123,'Shirt','MensWear','Light Green',1000,'Denim','XL');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1124,'Shirt','MensWear','White',700,'Solley','XXL');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1125,'Shirt','MensWear','Dark Red',1700,'PETER ENGLAND','M');
+
+1 row created.
+
+SQL>
+SQL>
+SQL>
+SQL> INSERT INTO ITEM_DETAILS(Item_id ,Item_name,Item_type,Item_colour,Price)
+  2                    VALUES(1126,' Cotton Saree','Womens Wear','Black',700);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO ITEM_DETAILS(Item_id,Item_name,Item_type,Item_colour,Price)
+  2                    VALUES(1127,' Silk Saree','Womens Wear','pink',500);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO ITEM_DETAILS(Item_id ,Item_name,Item_type,Item_colour,Price)
+  2                    VALUES(1128,'Cotton Saree','Womens Wear','Grey',450);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO ITEM_DETAILS(Item_id ,Item_name,Item_type,Item_colour,Price)
+  2                    VALUES(1129,'Shifon Saree','Womens Wear','Blue',550);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO ITEM_DETAILS(Item_id ,Item_name,Item_type,Item_colour,Price)
+  2                    VALUES(1130,'Silk Saree','Womens Wear','Yellow',760);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO ITEM_DETAILS(Item_id ,Item_name,Item_type,Item_colour,Price)
+  2                    VALUES(1131,'Poonam Saree','Womens Wear','Greenish Yellow',560);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO ITEM_DETAILS(Item_id ,Item_name,Item_type,Item_colour,Price)
+  2                    VALUES(1132,'Cotton Saree','Womens Wear','Grey',450);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO ITEM_DETAILS VALUES(1133,'pant','MensWear','Black',700,'OTTO',38);
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1134,'pant','MensWear','White',900,'MOTHI',36);
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1135,'Pant','MensWear','Grey',750,'XCESS',40);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO ITEM_DETAILS VALUES(1136,'Kids shirt','KidsWear','Red',400,'OTTO','M');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1137,'Kids shirt','KidsWear','Black',900,'RAMRAJ','XL');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1138,'Kids shirt','KidsWear','Grey',750,'Xcess',S);
+INSERT INTO ITEM_DETAILS VALUES(1138,'Kids shirt','KidsWear','Grey',750,'Xcess',S)
+                                                                                *
+ERROR at line 1:
+ORA-00984: column not allowed here
+
+
+SQL>
+SQL> INSERT INTO ITEM_DETAILS VALUES(1139,'Kids suit','kidsWear','Dark Black',700,'OTTO','M');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1140,'Kids suit','kidsWear','Light Blue',900,'RAMRAJ','XL');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1141,'Kids suit','kidsWear','Navy Blue',750,'Xcess','S');
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO ITEM_DETAILS VALUES(1142,'TShirt','MensWear','Royal blue',650,'PETER ENGLAND','M');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1143,'TShirt','MensWear','Green',230,'Basics','M');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1144,'kurta','WomensWear','Violet',460,'Nithi Materials','S');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1145,'Cotton kurta','WomensWear','Black',500,'Nithi Materials','M');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1146,'Leggings','WomensWear','White',230,'Cotton Materials','S');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1147,'Lehanga','WomensWear','Pink',1000,'Silk Materials','XL');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1148,'Long Frog','WomensWear','peech',500,'PK Materials','M');
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO ITEM_DETAILS VALUES(1149,'Kids Pant','KidsWear','Red',400,'OTTO','M');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1150,'Kids shirt','KidsWear','Golden',330,'Pantaloon','M');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1151,'Long frog','KidsWear','Black',400,'Trends','XS');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1152,'Pant','MensWear','Light blue',400,'OTTO','M');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1153,'Jean','MensWear','Black',700,'Denim','M');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1154,'Jean','MensWear','Blue',400,'LOL Dresses','M');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1155,'Kids shirt','KidsWear','Light green',220,'Max','M');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1156,'Kids shirt','KidsWear','Red',400,'CK Materials','M');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1157,'Shawl','WomensWear','Red',100,'Art Materials','L');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1158,'Shawl','WomensWear','Black',200,'Art Materials','M');
+
+1 row created.
+
+SQL> CREATE TABLE CUSTOMER
+  2  (
+  3  Bill_id number(5) primary key,
+  4  Date_of_purchase date,
+  5  Customer_name varchar2(20),
+  6  Mobile_no number(10) NOT NULL,
+  7  Mode_of_payment varchar2(20),
+  8  Total_amount number(5)
+  9  );
+
+Table created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10021,'21-AUG-2019','Ramya',9878656554,'Cash',3260);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(10022,'21-AUG-2019','Leela',9878000754,'Cash',1210);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10023,'22-AUG-2019','Ram',9000002154,'Cash',770);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(10024,'22-AUG-2019','Lokesh',6321768542,'Cash',1360);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10025,'23-AUG-2019','Harry',9944032440,'Cash',1820);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(10026,'23-AUG-2019','Leena',6398798732,'Credit Card',780);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10027,'24-AUG-2019','Kishore',6321768542,'Cash',1840);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(10028,'24-AUG-2019','Kumar',9025828799,'Cash',2235);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10029,'25-AUG-2019','Dinesh',9025873190,'Cash',1030);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(10030,'25-AUG-2019','Ashok',9944032440,'Cash',1590);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10031,'26-AUG-2019','Raj',9875625311,'Cash',710);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(10032,'26-AUG-2019','Thilak',6321761234,'Cash',1480);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10033,'27-AUG-2019','Martin',9872087529,'Cash',700);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(10034,'27-AUG-2019','Malini',8072076518,'Credit card',980);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10035,'28-AUG-2019','Pooja',7539908699,'Cash',910);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(10036,'28-AUG-2019','Neha',9876543210,'Debit card',1920);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10037,'29-AUG-2019','Malar',6375735286,'Cash',2630);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(10038,'29-AUG-2019','Mala',7708817687,'Cash',580);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10039,'30-AUG-2019','Sarika',9387676587,'Cash',450);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10040,'01-SEP-2019','Malini',8072076518,'Cash',1520);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(10041,'01-SEP-2019','Adams',9180767659,'Cash',555);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10042,'02-SEP-2019','Dos',8072073214,'Cash',920);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(10043,'02-SEP-2019','Velu',8072076878,'debit card',760);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10044,'03-SEP-2019','Senthil',7708810573,'Credit card',1160);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(10045,'03-SEP-2019','Sagar',7708670765,'Cash',700);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10046,'04-SEP-2019','Ranga',9977665544,'Credit card',1300);
+
+1 row created.
+
+SQL>
+SQL> CREATE TABLE PURCHASE_ITEM_DETAILS
+  2  (
+  3  Bill_id number(10),
+  4  Item_id number(5),
+  5  Price number(4),
+  6  Tax number(3),
+  7  Amount number(5),
+  8  constraint item_type_id Foreign key(Item_id) references Item_details(Item_id),
+  9  constraint Bill Foreign key(Bill_id) references Customer(Bill_id)
+ 10  );
+
+Table created.
+
+SQL>
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10021,1120,700,50,750);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10022,1122,750,10,760);
+INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10022,1122,750,10,760)
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (SCOT.ITEM_TYPE_ID) violated - parent key not found
+
+
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10022,1126,700,5,705);
+
+1 row created.
+
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10022,1124,700,5,705);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10023,1123,1000,20,1020);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10024,1125,1700,20,1720);
+
+1 row created.
+
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10024,1127,500,20,520);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10025,1128,450,20,470);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10026,1129,550,20,570);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10027,1131,560,20,570);
+
+1 row created.
+
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10027,1130,760,20,780);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10028,1134,900,10,910);
+
+1 row created.
+
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10028,1135,750,5,755);
+
+1 row created.
+
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10028,1137,900,20,920);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10029,1133,700,20,720);
+
+1 row created.
+
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10029,1132,450,0,450);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10030,1136,400,10,410);
+
+1 row created.
+
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10030,1142,650,20,670);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10031,1158,200,10,210);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10032,1141,750,10,760);
+
+1 row created.
+
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10032,1138,750,20,770);
+INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10032,1138,750,20,770)
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (SCOT.ITEM_TYPE_ID) violated - parent key not found
+
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10033,1139,700,0,700);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10034,1140,900,10,910);
+
+1 row created.
+
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10034,1121,900,20,920);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10035,1143,230,10,240);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10036,1145,500,20,570);
+
+1 row created.
+
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10036,1147,1000,0,900);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10037,1144,460,20,480);
+
+1 row created.
+
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10037,1146,200,10,210);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10038,1148,700,20,700);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10039,1150,330,0,330);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10040,1152,400,20,420);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10041,1154,400,5,405);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10042,1156,400,20,420);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10043,1157,100,10,110);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10044,1155,220,0,220);
+
+1 row created.
+
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10045,1153,700,10,710);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10046,1151,400,0,400);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10047,1149,400,20,420);
+INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10047,1149,400,20,420)
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (SCOT.BILL) violated - parent key not found
+
+
+SQL> drop table worker;
+
+Table dropped.
+
+SQL> drop table worker_department;
+
+Table dropped.
+
+SQL> drop table purchase;
+drop table purchase
+           *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> drop table purchase_item_details;
+
+Table dropped.
+
+SQL> drop table item_details;
+
+Table dropped.
+
+SQL> drop table customer;
+
+Table dropped.
+
+SQL> CREATE TABLE WORKER_DEPARTMENT
+  2  (
+  3  Dept_id number primary key,
+  4  Dept_name varchar2(10)
+  5  );
+
+Table created.
+
+SQL>
+SQL> INSERT INTO WORKER_DEPARTMENT VALUES(10,'Sales');
+
+1 row created.
+
+SQL> INSERT INTO WORKER_DEPARTMENT VALUES(20,'Supervisor');
+
+1 row created.
+
+SQL> INSERT INTO WORKER_DEPARTMENT VALUES(30,'Cleaning');
+
+1 row created.
+
+SQL> INSERT INTO WORKER_DEPARTMENT VALUES(40,'Cashier');
+
+1 row created.
+
+SQL> CREATE TABLE WORKER
+  2  (
+  3   worker_id VARCHAR2(5) primary key,
+  4   Name VARCHAR2(20),
+  5   dob DATE,
+  6   Gender varchar2(10),
+  7   Address VARCHAR2(30),
+  8   Age number(2),
+  9   Mobile_no number(10) NOT NULL,
+ 10   Dept_id number,
+ 11   Section varchar2(20),
+ 12   Salary number(5),
+ 13   constraint con_dept FOREIGN KEY(dept_id) REFERENCES WORKER_DEPARTMENT(Dept_id)
+ 14   );
+
+Table created.
+
+SQL>
+SQL> INSERT INTO WORKER VALUES(100,'Parker','29-JUN-1995','Male','NO-4 ,ABapartment OMR',24,9423543256,10,'Shirt',1500);
+
+1 row created.
+
+SQL> INSERT INTO WORKER VALUES(101,'Prathap','10-JUL-1994','Male','plot no 10,RAJ NAGAR OMR',25,9235432567,20,'Shirt',15000);
+
+1 row created.
+
+SQL> INSERT INTO WORKER VALUES(103,'Mani','08-APR-1990','Male','SS apartments OMR',29,9765746537,30,'Shirt',6000);
+
+1 row created.
+
+SQL> INSERT INTO WORKER VALUES(104,'Moris','23-SEP-1992','Male','SS apartments OMR',27,9765454578,40,'Shirt',9000);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO WORKER VALUES(105,'Malini','20-APR-1991','Female','KK Nagar OMR',28,8072076518,10,'Sarees',6000);
+
+1 row created.
+
+SQL> INSERT INTO WORKER VALUES(106,'Mahe','10-DEC-1991','Female','MM Nagar OMR',30,9994045035,20,'Sarees',15000);
+
+1 row created.
+
+SQL> INSERT INTO WORKER VALUES(107,'Shree','12-JAN-1994','Female','Sun lane TBM',24,8882207618,30,'Sarees',7800);
+
+1 row created.
+
+SQL> INSERT INTO WORKER VALUES(108,'Soniya','17-FEB-1994','Female','New SSR plot',24,9000290002,40,'Sarees',7900);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO WORKER VALUES(109,'Koushik','30-JUL-1994','Male','T nagar',24,8882207619,10,'Kidswear',7800);
+
+1 row created.
+
+SQL> INSERT INTO WORKER VALUES(110,'Harry','20-APR-1995','Male','ECR apartment,Navalur',23,9944032440,20,'Kidswear',16800);
+
+1 row created.
+
+SQL> INSERT INTO WORKER VALUES(111,'Mano','20-FEB-1993','Male','PP House,apt, OMR',25,9956785432,30,'Kidswear',6600);
+
+1 row created.
+
+SQL> INSERT INTO WORKER VALUES(112,'Sedhu','25-AUG-1994','Male','PP House,apt, OMR',24,8877653431,40,'Kidswear',8100);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO WORKER VALUES(113,'Sidhu','03-JUL-1994','Male','St no 10 OMR',24,9977880022,10,'Suit',7100);
+
+1 row created.
+
+SQL> INSERT INTO WORKER VALUES(114,'Hemanth','20-MAY-1992','Male','98 plotno,ac pt OMR',24,9977880077,20,'Suit',10000);
+
+1 row created.
+
+SQL> INSERT INTO WORKER VALUES(115,'Martin','20-JUN-1993','Male','Apt House, OMR',25,9872087529,30,'Suit',6000);
+
+1 row created.
+
+SQL> INSERT INTO WORKER VALUES(116,'Sudhakar','25-MAR-1994','Male','PCT House',24,9543295432,40,'Suit',7800);
+
+1 row created.
+
+SQL>
+SQL> CREATE TABLE ITEM_DETAILS
+  2  (
+  3  Item_id number(5) primary key,
+  4  Item_name varchar2(30) NOT NULL,
+  5  Item_type varchar2(30),
+  6  Item_colour varchar2(20),
+  7  Price number(4),
+  8  Brand varchar2(20),
+  9  Item_size VARCHAR2(10)
+ 10  );
+
+Table created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1120,'Shirt','MensWear','Red',700,'OTTO','M');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1121,'Shirt','MensWear','Black',900,'RAMRAJ','XL');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1122,'Shirt','MensWear','Grey',750,'Xcess',S);
+INSERT INTO ITEM_DETAILS VALUES(1122,'Shirt','MensWear','Grey',750,'Xcess',S)
+                                                                           *
+ERROR at line 1:
+ORA-00984: column not allowed here
+
+
+SQL>
+SQL> INSERT INTO ITEM_DETAILS VALUES(1123,'Shirt','MensWear','Light Green',1000,'Denim','XL');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1124,'Shirt','MensWear','White',700,'Solley','XXL');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1125,'Shirt','MensWear','Dark Red',1700,'PETER ENGLAND','M');
+
+1 row created.
+
+SQL>
+SQL>
+SQL>
+SQL> INSERT INTO ITEM_DETAILS(Item_id ,Item_name,Item_type,Item_colour,Price)
+  2                    VALUES(1126,' Cotton Saree','Womens Wear','Black',700);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO ITEM_DETAILS(Item_id,Item_name,Item_type,Item_colour,Price)
+  2                    VALUES(1127,' Silk Saree','Womens Wear','pink',500);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO ITEM_DETAILS(Item_id ,Item_name,Item_type,Item_colour,Price)
+  2                    VALUES(1128,'Cotton Saree','Womens Wear','Grey',450);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO ITEM_DETAILS(Item_id ,Item_name,Item_type,Item_colour,Price)
+  2                    VALUES(1129,'Shifon Saree','Womens Wear','Blue',550);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO ITEM_DETAILS(Item_id ,Item_name,Item_type,Item_colour,Price)
+  2                    VALUES(1130,'Silk Saree','Womens Wear','Yellow',760);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO ITEM_DETAILS(Item_id ,Item_name,Item_type,Item_colour,Price)
+  2                    VALUES(1131,'Poonam Saree','Womens Wear','Greenish Yellow',560);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO ITEM_DETAILS(Item_id ,Item_name,Item_type,Item_colour,Price)
+  2                    VALUES(1132,'Cotton Saree','Womens Wear','Grey',450);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO ITEM_DETAILS VALUES(1133,'pant','MensWear','Black',700,'OTTO',38);
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1134,'pant','MensWear','White',900,'MOTHI',36);
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1135,'Pant','MensWear','Grey',750,'XCESS',40);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO ITEM_DETAILS VALUES(1136,'Kids shirt','KidsWear','Red',400,'OTTO','M');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1137,'Kids shirt','KidsWear','Black',900,'RAMRAJ','XL');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1138,'Kids shirt','KidsWear','Grey',750,'Xcess',S);
+INSERT INTO ITEM_DETAILS VALUES(1138,'Kids shirt','KidsWear','Grey',750,'Xcess',S)
+                                                                                *
+ERROR at line 1:
+ORA-00984: column not allowed here
+
+
+SQL>
+SQL> INSERT INTO ITEM_DETAILS VALUES(1139,'Kids suit','kidsWear','Dark Black',700,'OTTO','M');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1140,'Kids suit','kidsWear','Light Blue',900,'RAMRAJ','XL');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1141,'Kids suit','kidsWear','Navy Blue',750,'Xcess','S');
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO ITEM_DETAILS VALUES(1142,'TShirt','MensWear','Royal blue',650,'PETER ENGLAND','M');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1143,'TShirt','MensWear','Green',230,'Basics','M');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1144,'kurta','WomensWear','Violet',460,'Nithi Materials','S');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1145,'Cotton kurta','WomensWear','Black',500,'Nithi Materials','M');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1146,'Leggings','WomensWear','White',230,'Cotton Materials','S');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1147,'Lehanga','WomensWear','Pink',1000,'Silk Materials','XL');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1148,'Long Frog','WomensWear','peech',500,'PK Materials','M');
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO ITEM_DETAILS VALUES(1149,'Kids Pant','KidsWear','Red',400,'OTTO','M');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1150,'Kids shirt','KidsWear','Golden',330,'Pantaloon','M');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1151,'Long frog','KidsWear','Black',400,'Trends','XS');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1152,'Pant','MensWear','Light blue',400,'OTTO','M');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1153,'Jean','MensWear','Black',700,'Denim','M');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1154,'Jean','MensWear','Blue',400,'LOL Dresses','M');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1155,'Kids shirt','KidsWear','Light green',220,'Max','M');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1156,'Kids shirt','KidsWear','Red',400,'CK Materials','M');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1157,'Shawl','WomensWear','Red',100,'Art Materials','L');
+
+1 row created.
+
+SQL> INSERT INTO ITEM_DETAILS VALUES(1158,'Shawl','WomensWear','Black',200,'Art Materials','M');
+
+1 row created.
+
+SQL>
+SQL> CREATE TABLE CUSTOMER
+  2  (
+  3  Bill_id number(5) primary key,
+  4  Date_of_purchase date,
+  5  Customer_name varchar2(20),
+  6  Mobile_no number(10) NOT NULL,
+  7  Mode_of_payment varchar2(20),
+  8  Total_amount number(5)
+  9  );
+
+Table created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10021,'21-AUG-2019','Ramya',9878656554,'Cash',750);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(10022,'21-AUG-2019','Leela',9878000754,'Cash',2170);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10023,'22-AUG-2019','Ram',9000002154,'Cash',1020);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(10024,'22-AUG-2019','Lokesh',6321768542,'Cash',2240);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10025,'23-AUG-2019','Harry',9944032440,'Cash',470);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(10026,'23-AUG-2019','Leena',6398798732,'Credit Card',570);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10027,'24-AUG-2019','Kishore',6321768542,'Cash',1350);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(10028,'24-AUG-2019','Kumar',9025828799,'Cash',2585);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10029,'25-AUG-2019','Dinesh',9025873190,'Cash',1170);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(10030,'25-AUG-2019','Ashok',9944032440,'Cash',1080);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10031,'26-AUG-2019','Raj',9875625311,'Cash',210);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(10032,'26-AUG-2019','Thilak',6321761234,'Cash',1480);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10033,'27-AUG-2019','Martin',9872087529,'Cash',700);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(10034,'27-AUG-2019','Malini',8072076518,'Credit card',980);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10035,'28-AUG-2019','Pooja',7539908699,'Cash',1530);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(10036,'28-AUG-2019','Neha',9876543210,'Debit card',1470);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10037,'29-AUG-2019','Malar',6375735286,'Cash',690);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(10038,'29-AUG-2019','Mala',7708817687,'Cash',700);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10039,'30-AUG-2019','Sarika',9387676587,'Cash',330);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10040,'01-SEP-2019','Malini',8072076518,'Cash',420);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(10041,'01-SEP-2019','Adams',9180767659,'Cash',405);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10042,'02-SEP-2019','Dos',8072073214,'Cash',420);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(10043,'02-SEP-2019','Velu',8072076878,'debit card',110);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10044,'03-SEP-2019','Senthil',7708810573,'Credit card',220);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(10045,'03-SEP-2019','Sagar',7708670765,'Cash',710);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO CUSTOMER VALUES(10046,'04-SEP-2019','Ranga',9977665544,'Credit card',400);
+
+1 row created.
+
+SQL>
+SQL> CREATE TABLE PURCHASE_ITEM_DETAILS
+  2  (
+  3  Bill_id number(10),
+  4  Item_id number(5),
+  5  Price number(4),
+  6  Tax number(3),
+  7  Amount number(5),
+  8  constraint item_type_id Foreign key(Item_id) references Item_details(Item_id),
+  9  constraint Bill Foreign key(Bill_id) references Customer(Bill_id)
+ 10  );
+
+Table created.
+
+SQL>
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10021,1120,700,50,750);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10022,1122,750,10,760);
+INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10022,1122,750,10,760)
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (SCOT.ITEM_TYPE_ID) violated - parent key not found
+
+
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10022,1126,700,5,705);
+
+1 row created.
+
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10022,1124,700,5,705);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10023,1123,1000,20,1020);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10024,1125,1700,20,1720);
+
+1 row created.
+
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10024,1127,500,20,520);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10025,1128,450,20,470);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10026,1129,550,20,570);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10027,1131,560,20,570);
+
+1 row created.
+
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10027,1130,760,20,780);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10028,1134,900,10,910);
+
+1 row created.
+
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10028,1135,750,5,755);
+
+1 row created.
+
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10028,1137,900,20,920);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10029,1133,700,20,720);
+
+1 row created.
+
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10029,1132,450,0,450);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10030,1136,400,10,410);
+
+1 row created.
+
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10030,1142,650,20,670);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10031,1158,200,10,210);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10032,1141,750,10,760);
+
+1 row created.
+
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10032,1138,750,20,770);
+INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10032,1138,750,20,770)
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (SCOT.ITEM_TYPE_ID) violated - parent key not found
+
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10033,1139,700,0,700);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10034,1140,900,10,910);
+
+1 row created.
+
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10034,1121,900,20,920);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10035,1143,230,10,240);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10036,1145,500,20,570);
+
+1 row created.
+
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10036,1147,1000,0,900);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10037,1144,460,20,480);
+
+1 row created.
+
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10037,1146,200,10,210);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10038,1148,700,20,700);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10039,1150,330,0,330);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10040,1152,400,20,420);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10041,1154,400,5,405);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10042,1156,400,20,420);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10043,1157,100,10,110);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO PURCHASE_ITEM_DETAILS VALUES(10044,1155,220,0,220);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10045,1153,700,10,710);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO  PURCHASE_ITEM_DETAILS VALUES(10046,1151,400,0,400);
+
+1 row created.
+
+SQL> select item_name from item_details;
+
+ITEM_NAME
+------------------------------
+Shirt
+Shirt
+Shirt
+Shirt
+Shirt
+ Cotton Saree
+ Silk Saree
+Cotton Saree
+Shifon Saree
+Silk Saree
+Poonam Saree
+Cotton Saree
+pant
+pant
+Pant
+Kids shirt
+Kids shirt
+Kids suit
+Kids suit
+Kids suit
+TShirt
+TShirt
+kurta
+Cotton kurta
+Leggings
+Lehanga
+Long Frog
+Kids Pant
+Kids shirt
+Long frog
+Pant
+Jean
+Jean
+Kids shirt
+Kids shirt
+Shawl
+Shawl
+
+37 rows selected.
+
+SQL> select item_id,item_name from item_details;
+
+   ITEM_ID ITEM_NAME
+---------- ------------------------------
+      1120 Shirt
+      1121 Shirt
+      1123 Shirt
+      1124 Shirt
+      1125 Shirt
+      1126  Cotton Saree
+      1127  Silk Saree
+      1128 Cotton Saree
+      1129 Shifon Saree
+      1130 Silk Saree
+      1131 Poonam Saree
+      1132 Cotton Saree
+      1133 pant
+      1134 pant
+      1135 Pant
+      1136 Kids shirt
+      1137 Kids shirt
+      1139 Kids suit
+      1140 Kids suit
+      1141 Kids suit
+      1142 TShirt
+      1143 TShirt
+      1144 kurta
+      1145 Cotton kurta
+      1146 Leggings
+      1147 Lehanga
+      1148 Long Frog
+      1149 Kids Pant
+      1150 Kids shirt
+      1151 Long frog
+      1152 Pant
+      1153 Jean
+      1154 Jean
+      1155 Kids shirt
+      1156 Kids shirt
+      1157 Shawl
+      1158 Shawl
+
+37 rows selected.
+
+SQL> select * from item_details;
+
+   ITEM_ID ITEM_NAME                      ITEM_TYPE                      ITEM_COLOUR               PRICE
+---------- ------------------------------ ------------------------------ -------------------- ----------
+BRAND                ITEM_SIZE
+-------------------- ----------
+      1120 Shirt                          MensWear                       Red                         700
+OTTO                 M
+
+      1121 Shirt                          MensWear                       Black                       900
+RAMRAJ               XL
+
+      1123 Shirt                          MensWear                       Light Green                1000
+Denim                XL
+
+      1124 Shirt                          MensWear                       White                       700
+Solley               XXL
+
+      1125 Shirt                          MensWear                       Dark Red                   1700
+PETER ENGLAND        M
+
+      1126  Cotton Saree                  Womens Wear                    Black                       700
+
+
+      1127  Silk Saree                    Womens Wear                    pink                        500
+
+
+      1128 Cotton Saree                   Womens Wear                    Grey                        450
+
+
+      1129 Shifon Saree                   Womens Wear                    Blue                        550
+
+
+      1130 Silk Saree                     Womens Wear                    Yellow                      760
+
+
+      1131 Poonam Saree                   Womens Wear                    Greenish Yellow             560
+
+
+      1132 Cotton Saree                   Womens Wear                    Grey                        450
+
+
+      1133 pant                           MensWear                       Black                       700
+OTTO                 38
+
+      1134 pant                           MensWear                       White                       900
+MOTHI                36
+
+      1135 Pant                           MensWear                       Grey                        750
+XCESS                40
+
+      1136 Kids shirt                     KidsWear                       Red                         400
+OTTO                 M
+
+      1137 Kids shirt                     KidsWear                       Black                       900
+RAMRAJ               XL
+
+      1139 Kids suit                      kidsWear                       Dark Black                  700
+OTTO                 M
+
+      1140 Kids suit                      kidsWear                       Light Blue                  900
+
+   ITEM_ID ITEM_NAME                      ITEM_TYPE                      ITEM_COLOUR               PRICE
+---------- ------------------------------ ------------------------------ -------------------- ----------
+BRAND                ITEM_SIZE
+-------------------- ----------
+RAMRAJ               XL
+
+      1141 Kids suit                      kidsWear                       Navy Blue                   750
+Xcess                S
+
+      1142 TShirt                         MensWear                       Royal blue                  650
+PETER ENGLAND        M
+
+      1143 TShirt                         MensWear                       Green                       230
+Basics               M
+
+      1144 kurta                          WomensWear                     Violet                      460
+Nithi Materials      S
+
+      1145 Cotton kurta                   WomensWear                     Black                       500
+Nithi Materials      M
+
+      1146 Leggings                       WomensWear                     White                       230
+Cotton Materials     S
+
+      1147 Lehanga                        WomensWear                     Pink                       1000
+Silk Materials       XL
+
+      1148 Long Frog                      WomensWear                     peech                       500
+PK Materials         M
+
+      1149 Kids Pant                      KidsWear                       Red                         400
+OTTO                 M
+
+      1150 Kids shirt                     KidsWear                       Golden                      330
+Pantaloon            M
+
+      1151 Long frog                      KidsWear                       Black                       400
+Trends               XS
+
+      1152 Pant                           MensWear                       Light blue                  400
+OTTO                 M
+
+      1153 Jean                           MensWear                       Black                       700
+Denim                M
+
+      1154 Jean                           MensWear                       Blue                        400
+LOL Dresses          M
+
+      1155 Kids shirt                     KidsWear                       Light green                 220
+Max                  M
+
+      1156 Kids shirt                     KidsWear                       Red                         400
+CK Materials         M
+
+      1157 Shawl                          WomensWear                     Red                         100
+Art Materials        L
+
+      1158 Shawl                          WomensWear                     Black                       200
+Art Materials        M
+
+   ITEM_ID ITEM_NAME                      ITEM_TYPE                      ITEM_COLOUR               PRICE
+---------- ------------------------------ ------------------------------ -------------------- ----------
+BRAND                ITEM_SIZE
+-------------------- ----------
+
+
+37 rows selected.
+
+SQL> set linesize 60
+SQL> set pagesize 60
+SQL> select * from item_details;
+
+   ITEM_ID ITEM_NAME
+---------- ------------------------------
+ITEM_TYPE                      ITEM_COLOUR
+------------------------------ --------------------
+     PRICE BRAND                ITEM_SIZE
+---------- -------------------- ----------
+      1120 Shirt
+MensWear                       Red
+       700 OTTO                 M
+
+      1121 Shirt
+MensWear                       Black
+       900 RAMRAJ               XL
+
+      1123 Shirt
+MensWear                       Light Green
+      1000 Denim                XL
+
+      1124 Shirt
+MensWear                       White
+       700 Solley               XXL
+
+      1125 Shirt
+MensWear                       Dark Red
+      1700 PETER ENGLAND        M
+
+      1126  Cotton Saree
+Womens Wear                    Black
+       700
+
+      1127  Silk Saree
+Womens Wear                    pink
+       500
+
+      1128 Cotton Saree
+Womens Wear                    Grey
+       450
+
+      1129 Shifon Saree
+Womens Wear                    Blue
+       550
+
+      1130 Silk Saree
+Womens Wear                    Yellow
+       760
+
+      1131 Poonam Saree
+Womens Wear                    Greenish Yellow
+       560
+
+      1132 Cotton Saree
+Womens Wear                    Grey
+       450
+
+      1133 pant
+MensWear                       Black
+       700 OTTO                 38
+
+      1134 pant
+
+   ITEM_ID ITEM_NAME
+---------- ------------------------------
+ITEM_TYPE                      ITEM_COLOUR
+------------------------------ --------------------
+     PRICE BRAND                ITEM_SIZE
+---------- -------------------- ----------
+MensWear                       White
+       900 MOTHI                36
+
+      1135 Pant
+MensWear                       Grey
+       750 XCESS                40
+
+      1136 Kids shirt
+KidsWear                       Red
+       400 OTTO                 M
+
+      1137 Kids shirt
+KidsWear                       Black
+       900 RAMRAJ               XL
+
+      1139 Kids suit
+kidsWear                       Dark Black
+       700 OTTO                 M
+
+      1140 Kids suit
+kidsWear                       Light Blue
+       900 RAMRAJ               XL
+
+      1141 Kids suit
+kidsWear                       Navy Blue
+       750 Xcess                S
+
+      1142 TShirt
+MensWear                       Royal blue
+       650 PETER ENGLAND        M
+
+      1143 TShirt
+MensWear                       Green
+       230 Basics               M
+
+      1144 kurta
+WomensWear                     Violet
+       460 Nithi Materials      S
+
+      1145 Cotton kurta
+WomensWear                     Black
+       500 Nithi Materials      M
+
+      1146 Leggings
+WomensWear                     White
+       230 Cotton Materials     S
+
+      1147 Lehanga
+WomensWear                     Pink
+      1000 Silk Materials       XL
+
+      1148 Long Frog
+WomensWear                     peech
+
+   ITEM_ID ITEM_NAME
+---------- ------------------------------
+ITEM_TYPE                      ITEM_COLOUR
+------------------------------ --------------------
+     PRICE BRAND                ITEM_SIZE
+---------- -------------------- ----------
+       500 PK Materials         M
+
+      1149 Kids Pant
+KidsWear                       Red
+       400 OTTO                 M
+
+      1150 Kids shirt
+KidsWear                       Golden
+       330 Pantaloon            M
+
+      1151 Long frog
+KidsWear                       Black
+       400 Trends               XS
+
+      1152 Pant
+MensWear                       Light blue
+       400 OTTO                 M
+
+      1153 Jean
+MensWear                       Black
+       700 Denim                M
+
+      1154 Jean
+MensWear                       Blue
+       400 LOL Dresses          M
+
+      1155 Kids shirt
+KidsWear                       Light green
+       220 Max                  M
+
+      1156 Kids shirt
+KidsWear                       Red
+       400 CK Materials         M
+
+      1157 Shawl
+WomensWear                     Red
+       100 Art Materials        L
+
+      1158 Shawl
+WomensWear                     Black
+       200 Art Materials        M
+
+
+37 rows selected.
+
+SQL> set linesize 600
+SQL> select * from item_details;
+
+   ITEM_ID ITEM_NAME                      ITEM_TYPE                      ITEM_COLOUR               PRICE BRAND                ITEM_SIZE
+---------- ------------------------------ ------------------------------ -------------------- ---------- -------------------- ----------
+      1120 Shirt                          MensWear                       Red                         700 OTTO                 M
+      1121 Shirt                          MensWear                       Black                       900 RAMRAJ               XL
+      1123 Shirt                          MensWear                       Light Green                1000 Denim                XL
+      1124 Shirt                          MensWear                       White                       700 Solley               XXL
+      1125 Shirt                          MensWear                       Dark Red                   1700 PETER ENGLAND        M
+      1126  Cotton Saree                  Womens Wear                    Black                       700
+      1127  Silk Saree                    Womens Wear                    pink                        500
+      1128 Cotton Saree                   Womens Wear                    Grey                        450
+      1129 Shifon Saree                   Womens Wear                    Blue                        550
+      1130 Silk Saree                     Womens Wear                    Yellow                      760
+      1131 Poonam Saree                   Womens Wear                    Greenish Yellow             560
+      1132 Cotton Saree                   Womens Wear                    Grey                        450
+      1133 pant                           MensWear                       Black                       700 OTTO                 38
+      1134 pant                           MensWear                       White                       900 MOTHI                36
+      1135 Pant                           MensWear                       Grey                        750 XCESS                40
+      1136 Kids shirt                     KidsWear                       Red                         400 OTTO                 M
+      1137 Kids shirt                     KidsWear                       Black                       900 RAMRAJ               XL
+      1139 Kids suit                      kidsWear                       Dark Black                  700 OTTO                 M
+      1140 Kids suit                      kidsWear                       Light Blue                  900 RAMRAJ               XL
+      1141 Kids suit                      kidsWear                       Navy Blue                   750 Xcess                S
+      1142 TShirt                         MensWear                       Royal blue                  650 PETER ENGLAND        M
+      1143 TShirt                         MensWear                       Green                       230 Basics               M
+      1144 kurta                          WomensWear                     Violet                      460 Nithi Materials      S
+      1145 Cotton kurta                   WomensWear                     Black                       500 Nithi Materials      M
+      1146 Leggings                       WomensWear                     White                       230 Cotton Materials     S
+      1147 Lehanga                        WomensWear                     Pink                       1000 Silk Materials       XL
+      1148 Long Frog                      WomensWear                     peech                       500 PK Materials         M
+      1149 Kids Pant                      KidsWear                       Red                         400 OTTO                 M
+      1150 Kids shirt                     KidsWear                       Golden                      330 Pantaloon            M
+      1151 Long frog                      KidsWear                       Black                       400 Trends               XS
+      1152 Pant                           MensWear                       Light blue                  400 OTTO                 M
+      1153 Jean                           MensWear                       Black                       700 Denim                M
+      1154 Jean                           MensWear                       Blue                        400 LOL Dresses          M
+      1155 Kids shirt                     KidsWear                       Light green                 220 Max                  M
+      1156 Kids shirt                     KidsWear                       Red                         400 CK Materials         M
+      1157 Shawl                          WomensWear                     Red                         100 Art Materials        L
+      1158 Shawl                          WomensWear                     Black                       200 Art Materials        M
+
+37 rows selected.
+
+SQL> select i.item_name from purchase_item_details p join customer c on(p.bill_id=c.bill_id) join item_details i on(i.item_id=p.item_id) where p.bill_id=10039;
+
+ITEM_NAME
+------------------------------
+Kids shirt
+
+SQL> select i.item_name,p.amount from purchase_item_details p join customer c on(p.bill_id=c.bill_id) join item_details i on(i.item_id=p.item_id) where p.bill_id=10039;
+
+ITEM_NAME                          AMOUNT
+------------------------------ ----------
+Kids shirt                            330
+
+SQL> select i.item_name,p.amount from purchase_item_details p join customer c on(p.bill_id=c.bill_id) join item_details i on(i.item_id=p.item_id) where p.bill_id=10027;
+
+ITEM_NAME                          AMOUNT
+------------------------------ ----------
+Poonam Saree                          570
+Silk Saree                            780
+
+SQL> select i.item_name,p.amount,p.date_of_purchase from purchase_item_details p join customer c on(p.bill_id=c.bill_id) join item_details i on(i.item_id=p.item_id) where p.bill_id=10027;
+select i.item_name,p.amount,p.date_of_purchase from purchase_item_details p join customer c on(p.bill_id=c.bill_id) join item_details i on(i.item_id=p.item_id) where p.bill_id=10027
+                            *
+ERROR at line 1:
+ORA-00904: "P"."DATE_OF_PURCHASE": invalid identifier
+
+
+SQL> select i.item_name,p.amount,c.date_of_purchase from purchase_item_details p join customer c on(p.bill_id=c.bill_id) join item_details i on(i.item_id=p.item_id) where p.bill_id=10027;
+
+ITEM_NAME                          AMOUNT DATE_OF_P
+------------------------------ ---------- ---------
+Poonam Saree                          570 24-AUG-19
+Silk Saree                            780 24-AUG-19
+
+SQL> select i.item_name,i.item_name,p.amount,c.date_of_purchase from purchase_item_details p join customer c on(p.bill_id=c.bill_id) join item_details i on(i.item_id=p.item_id) where p.bill_id=10027;
+
+ITEM_NAME                      ITEM_NAME                          AMOUNT DATE_OF_P
+------------------------------ ------------------------------ ---------- ---------
+Poonam Saree                   Poonam Saree                          570 24-AUG-19
+Silk Saree                     Silk Saree                            780 24-AUG-19
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select i.item_id,i.item_name,p.amount,c.date_of_purchase
+  2  from purchase_item_details p join customer c on(p.bill_id=c.bill_id)
+  3* join item_details i on(i.item_id=p.item_id) where p.bill_id=10027
+SQL> /
+
+   ITEM_ID ITEM_NAME                          AMOUNT DATE_OF_P
+---------- ------------------------------ ---------- ---------
+      1131 Poonam Saree                          570 24-AUG-19
+      1130 Silk Saree                            780 24-AUG-19
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select count(item_id) from purchase_item_details where bill_id=10029;
+  2  /
+select count(item_id) from purchase_item_details where bill_id=10029;
+                                                                    *
+ERROR at line 1:
+ORA-00911: invalid character
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select count(item_id) from purchase_item_details where bill_id=10029
+SQL> /
+
+COUNT(ITEM_ID)
+--------------
+             2
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select customer_name from customer
+  2*  where bill_id=10029
+SQL> /
+
+CUSTOMER_NAME
+--------------------
+Dinesh
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select customer_name,mobile_no from customer
+  2*  where bill_id=10029
+SQL> /
+
+CUSTOMER_NAME         MOBILE_NO
+-------------------- ----------
+Dinesh               9025873190
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select customer_name,mobile_no,date_of_purchase from customer
+  2*  where bill_id=10029
+SQL> /
+
+CUSTOMER_NAME         MOBILE_NO DATE_OF_P
+-------------------- ---------- ---------
+Dinesh               9025873190 25-AUG-19
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select customer_name,mobile_no,date_of_purchase,count(item_id) from customer
+  2*  where bill_id=10029
+SQL> /
+select customer_name,mobile_no,date_of_purchase,count(item_id) from customer
+                                                      *
+ERROR at line 1:
+ORA-00904: "ITEM_ID": invalid identifier
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select customer_name,mobile_no,date_of_purchase,count(item_id)
+  2  from customer c join purchase_item_details p on(p.bill_id=c.bill_id)
+  3*  where bill_id=10029
+SQL> /
+ where bill_id=10029
+       *
+ERROR at line 3:
+ORA-00918: column ambiguously defined
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select c.customer_name,c.mobile_no,c.date_of_purchase,count(i.item_id)
+  2  from customer c join purchase_item_details p on(p.bill_id=c.bill_id)
+  3*  where p.bill_id=10029
+SQL> /
+select c.customer_name,c.mobile_no,c.date_of_purchase,count(i.item_id)
+                                                            *
+ERROR at line 1:
+ORA-00904: "I"."ITEM_ID": invalid identifier
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select c.customer_name,c.mobile_no,c.date_of_purchase,count(p.item_id)
+  2  from customer c join purchase_item_details p on(p.bill_id=c.bill_id)
+  3*  where p.bill_id=10029
+SQL> /
+select c.customer_name,c.mobile_no,c.date_of_purchase,count(p.item_id)
+       *
+ERROR at line 1:
+ORA-00937: not a single-group group function
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select c.customer_name,c.mobile_no,c.date_of_purchase,count(p.item_id)
+  2  from customer c join purchase_item_details p on(p.bill_id=c.bill_id)
+  3  group by  c.customer_name,c.mobile_no,c.date_of_purchase
+  4*  having p.bill_id=10029
+SQL> /
+ having p.bill_id=10029
+        *
+ERROR at line 4:
+ORA-00979: not a GROUP BY expression
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select c.customer_name,c.mobile_no,c.date_of_purchase,count(p.item_id)
+  2  from customer c join purchase_item_details p on(p.bill_id=c.bill_id)
+  3  group by  c.customer_name,c.mobile_no,c.date_of_purchase,p.item_id
+  4*  having p.bill_id=10029
+SQL> /
+ having p.bill_id=10029
+        *
+ERROR at line 4:
+ORA-00979: not a GROUP BY expression
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select c.customer_name,c.mobile_no,c.date_of_purchase,count(p.item_id)
+  2  from customer c join purchase_item_details p on(p.bill_id=c.bill_id)
+  3* group by  c.customer_name,c.mobile_no,c.date_of_purchase,p.item_id
+  4  /
+
+CUSTOMER_NAME         MOBILE_NO DATE_OF_P COUNT(P.ITEM_ID)
+-------------------- ---------- --------- ----------------
+Leela                9878000754 21-AUG-19                1
+Ram                  9000002154 22-AUG-19                1
+Kishore              6321768542 24-AUG-19                1
+Kumar                9025828799 24-AUG-19                1
+Dinesh               9025873190 25-AUG-19                1
+Ashok                9944032440 25-AUG-19                1
+Raj                  9875625311 26-AUG-19                1
+Neha                 9876543210 28-AUG-19                1
+Neha                 9876543210 28-AUG-19                1
+Harry                9944032440 23-AUG-19                1
+Leena                6398798732 23-AUG-19                1
+Dinesh               9025873190 25-AUG-19                1
+Malini               8072076518 27-AUG-19                1
+Malar                6375735286 29-AUG-19                1
+Mala                 7708817687 29-AUG-19                1
+Ashok                9944032440 25-AUG-19                1
+Martin               9872087529 27-AUG-19                1
+Pooja                7539908699 28-AUG-19                1
+Malar                6375735286 29-AUG-19                1
+Malini               8072076518 01-SEP-19                1
+Senthil              7708810573 03-SEP-19                1
+Ranga                9977665544 04-SEP-19                1
+Ramya                9878656554 21-AUG-19                1
+Lokesh               6321768542 22-AUG-19                1
+Lokesh               6321768542 22-AUG-19                1
+Kishore              6321768542 24-AUG-19                1
+Sarika               9387676587 30-AUG-19                1
+Adams                9180767659 01-SEP-19                1
+Leela                9878000754 21-AUG-19                1
+Kumar                9025828799 24-AUG-19                1
+Thilak               6321761234 26-AUG-19                1
+Malini               8072076518 27-AUG-19                1
+Dos                  8072073214 02-SEP-19                1
+Sagar                7708670765 03-SEP-19                1
+Kumar                9025828799 24-AUG-19                1
+Velu                 8072076878 02-SEP-19                1
+
+36 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select c.customer_name,c.mobile_no,c.date_of_purchase,count(p.item_id)
+  2  from customer c join purchase_item_details p on(p.bill_id=c.bill_id)
+  3  group by  c.customer_name,c.mobile_no,c.date_of_purchase,p.item_id
+  4* having p.bill_id=10029
+SQL> /
+having p.bill_id=10029
+       *
+ERROR at line 4:
+ORA-00979: not a GROUP BY expression
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select c.customer_name,c.mobile_no,c.date_of_purchase,count(p.item_id)
+  2  from customer c join purchase_item_details p on(p.bill_id=c.bill_id)
+  3  group by  c.customer_name,c.mobile_no,c.date_of_purchase,p.item_id
+  4* having c.bill_id=10029
+SQL> /
+having c.bill_id=10029
+       *
+ERROR at line 4:
+ORA-00979: not a GROUP BY expression
+
+
+SQL> select count(item_id) from customer where bill_id=10029;
+select count(item_id) from customer where bill_id=10029
+             *
+ERROR at line 1:
+ORA-00904: "ITEM_ID": invalid identifier
+
+
+SQL> select count(item_id) from purchase_item_details where bill_id=10029;
+
+COUNT(ITEM_ID)
+--------------
+             2
+
+SQL> select count(i.item_id),c.customer_name from purchase_item_details i join customer c on(i.bill_id=c.bill_id) where bill_id=10029;
+select count(i.item_id),c.customer_name from purchase_item_details i join customer c on(i.bill_id=c.bill_id) where bill_id=10029
+                                                                                                                   *
+ERROR at line 1:
+ORA-00918: column ambiguously defined
+
+
+SQL> select count(i.item_id),c.customer_name from purchase_item_details i join customer c on(i.bill_id=c.bill_id) where p.bill_id=10029;
+select count(i.item_id),c.customer_name from purchase_item_details i join customer c on(i.bill_id=c.bill_id) where p.bill_id=10029
+                                                                                                                   *
+ERROR at line 1:
+ORA-00904: "P"."BILL_ID": invalid identifier
+
+
+SQL> select count(i.item_id),c.customer_name from purchase_item_details i join customer c on(i.bill_id=c.bill_id) where c.bill_id=10029;
+select count(i.item_id),c.customer_name from purchase_item_details i join customer c on(i.bill_id=c.bill_id) where c.bill_id=10029
+                        *
+ERROR at line 1:
+ORA-00937: not a single-group group function
+
+
+SQL> select count(i.item_id),c.customer_name from purchase_item_details i join customer c on(i.bill_id=c.bill_id) where c.bill_id=10029 group by ;
+select count(i.item_id),c.customer_name from purchase_item_details i join customer c on(i.bill_id=c.bill_id) where c.bill_id=10029 group by
+                                                                                                                                           *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select count(i.item_id),c.customer_name
+  2  from purchase_item_details i join customer c on(i.bill_id=c.bill_id)
+  3* where c.bill_id=10029 group by c.customer_name
+SQL> /
+
+COUNT(I.ITEM_ID) CUSTOMER_NAME
+---------------- --------------------
+               2 Dinesh
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select count(i.item_id),c.customer_name,c.mobile_no
+  2  from purchase_item_details i join customer c on(i.bill_id=c.bill_id)
+  3* where c.bill_id=10029 group by c.customer_name,c.mobile_no
+SQL> /
+
+COUNT(I.ITEM_ID) CUSTOMER_NAME         MOBILE_NO
+---------------- -------------------- ----------
+               2 Dinesh               9025873190
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select count(i.item_id),c.customer_name,c.mobile_no,c.total_amount
+  2  from purchase_item_details i join customer c on(i.bill_id=c.bill_id)
+  3* where c.bill_id=10029 group by c.customer_name,c.mobile_no,c.total_amount
+SQL> /
+
+COUNT(I.ITEM_ID) CUSTOMER_NAME         MOBILE_NO TOTAL_AMOUNT
+---------------- -------------------- ---------- ------------
+               2 Dinesh               9025873190         1170
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select i.item_name,c.customer_name,c.mobile_no,c.total_amount
+  2  from purchase_item_details i join customer c on(i.bill_id=c.bill_id)
+  3* where c.bill_id=10029 group by c.customer_name,c.mobile_no,c.total_amount
+SQL> /
+select i.item_name,c.customer_name,c.mobile_no,c.total_amount
+       *
+ERROR at line 1:
+ORA-00904: "I"."ITEM_NAME": invalid identifier
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select i.item_name,c.customer_name,c.mobile_no,c.total_amount
+  2  from purchase_item_details i join customer c on(i.bill_id=c.bill_id)
+  3* where p.bill_id=10029;
+SQL> /
+where p.bill_id=10029;
+                     *
+ERROR at line 3:
+ORA-00911: invalid character
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select i.item_name,c.customer_name,c.mobile_no,c.total_amount
+  2  from purchase_item_details i join customer c on(i.bill_id=c.bill_id)
+  3* where i.bill_id=10029;
+SQL> /
+where i.bill_id=10029;
+                     *
+ERROR at line 3:
+ORA-00911: invalid character
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select i.item_name,c.customer_name,c.mobile_no,c.total_amount
+  2  from purchase_item_details i join customer c on(i.bill_id=c.bill_id)
+  3* where i.bill_id=10029
+SQL> /
+select i.item_name,c.customer_name,c.mobile_no,c.total_amount
+       *
+ERROR at line 1:
+ORA-00904: "I"."ITEM_NAME": invalid identifier
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select i1.item_name,c.customer_name,c.mobile_no,c.total_amount
+  2  from purchase_item_details i join customer c on(i.bill_id=c.bill_id)
+  3  join item_details i1 on(p.item_id=i1.item_id)
+  4* where i.bill_id=10029
+SQL> /
+join item_details i1 on(p.item_id=i1.item_id)
+                        *
+ERROR at line 3:
+ORA-00904: "P"."ITEM_ID": invalid identifier
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select i1.item_name,c.customer_name,c.mobile_no,c.total_amount
+  2  from purchase_item_details i join customer c on(i.bill_id=c.bill_id)
+  3  join item_details i1 on(i.item_id=i1.item_id)
+  4* where i.bill_id=10029
+SQL> /
+
+ITEM_NAME                      CUSTOMER_NAME         MOBILE_NO TOTAL_AMOUNT
+------------------------------ -------------------- ---------- ------------
+pant                           Dinesh               9025873190         1170
+Cotton Saree                   Dinesh               9025873190         1170
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select i1.item_name,i.item_id
+  2  from purchase_item_details i join customer c on(i.bill_id=c.bill_id)
+  3  join item_details i1 on(i.item_id=i1.item_id)
+  4* where i.bill_id=10029
+SQL> /
+
+ITEM_NAME                         ITEM_ID
+------------------------------ ----------
+pant                                 1133
+Cotton Saree                         1132
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select i1.item_name,i.item_id,i1.amount
+  2  from purchase_item_details i join customer c on(i.bill_id=c.bill_id)
+  3  join item_details i1 on(i.item_id=i1.item_id)
+  4* where i.bill_id=10029
+SQL> /
+select i1.item_name,i.item_id,i1.amount
+                              *
+ERROR at line 1:
+ORA-00904: "I1"."AMOUNT": invalid identifier
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select i1.item_name,i.item_id,i.amount
+  2  from purchase_item_details i join customer c on(i.bill_id=c.bill_id)
+  3  join item_details i1 on(i.item_id=i1.item_id)
+  4* where i.bill_id=10029
+SQL> /
+
+ITEM_NAME                         ITEM_ID     AMOUNT
+------------------------------ ---------- ----------
+pant                                 1133        720
+Cotton Saree                         1132        450
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select c.customer_name from customer c join worker w on(w.mobile_no=c.mobile_no)
+SQL> /
+
+CUSTOMER_NAME
+--------------------
+Harry
+Ashok
+Martin
+Malini
+Malini
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select c.customer_name,c.mobile_no
+  2* from customer c join worker w on(w.mobile_no=c.mobile_no)
+SQL> /
+
+CUSTOMER_NAME         MOBILE_NO
+-------------------- ----------
+Harry                9944032440
+Ashok                9944032440
+Martin               9872087529
+Malini               8072076518
+Malini               8072076518
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select c.customer_name,c.mobile_no,c.date_of_purchase
+  2* from customer c join worker w on(w.mobile_no=c.mobile_no)
+SQL> /
+
+CUSTOMER_NAME         MOBILE_NO DATE_OF_P
+-------------------- ---------- ---------
+Harry                9944032440 23-AUG-19
+Ashok                9944032440 25-AUG-19
+Martin               9872087529 27-AUG-19
+Malini               8072076518 27-AUG-19
+Malini               8072076518 01-SEP-19
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select c.customer_name,c.mobile_no,c.date_of_purchase,count(p.item_id)
+  2  from customer c join worker w on(w.mobile_no=c.mobile_no)
+  3* join purchase_item_details p on(p.bill_id=c.bill_id)
+SQL> /
+select c.customer_name,c.mobile_no,c.date_of_purchase,count(p.item_id)
+       *
+ERROR at line 1:
+ORA-00937: not a single-group group function
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select c.customer_name,c.mobile_no,c.date_of_purchase,count(p.item_id)
+  2  from customer c join worker w on(w.mobile_no=c.mobile_no)
+  3  join purchase_item_details p on(p.bill_id=c.bill_id)
+  4* group by c.customer_name,c.mobile_no,c.date_of_purchase
+SQL> /
+
+CUSTOMER_NAME         MOBILE_NO DATE_OF_P COUNT(P.ITEM_ID)
+-------------------- ---------- --------- ----------------
+Martin               9872087529 27-AUG-19                1
+Malini               8072076518 27-AUG-19                2
+Ashok                9944032440 25-AUG-19                2
+Harry                9944032440 23-AUG-19                1
+Malini               8072076518 01-SEP-19                1
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select c.customer_name,c.mobile_no,c.date_of_purchase,count(p.item_id),sum(p.amount)
+  2  from customer c join worker w on(w.mobile_no=c.mobile_no)
+  3  join purchase_item_details p on(p.bill_id=c.bill_id)
+  4* group by c.customer_name,c.mobile_no,c.date_of_purchase
+SQL> /
+
+CUSTOMER_NAME         MOBILE_NO DATE_OF_P COUNT(P.ITEM_ID) SUM(P.AMOUNT)
+-------------------- ---------- --------- ---------------- -------------
+Martin               9872087529 27-AUG-19                1           700
+Malini               8072076518 27-AUG-19                2          1830
+Ashok                9944032440 25-AUG-19                2          1080
+Harry                9944032440 23-AUG-19                1           470
+Malini               8072076518 01-SEP-19                1           420
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select c.customer_name,c.mobile_no,c.date_of_purchase,count(p.item_id),sum(p.amount) Amount
+  2  from customer c join worker w on(w.mobile_no=c.mobile_no)
+  3  join purchase_item_details p on(p.bill_id=c.bill_id)
+  4* group by c.customer_name,c.mobile_no,c.date_of_purchase
+SQL> /
+
+CUSTOMER_NAME         MOBILE_NO DATE_OF_P COUNT(P.ITEM_ID)     AMOUNT
+-------------------- ---------- --------- ---------------- ----------
+Martin               9872087529 27-AUG-19                1        700
+Malini               8072076518 27-AUG-19                2       1830
+Ashok                9944032440 25-AUG-19                2       1080
+Harry                9944032440 23-AUG-19                1        470
+Malini               8072076518 01-SEP-19                1        420
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select c.customer_name,c.mobile_no,c.date_of_purchase,count(p.item_id)
+  2  no_of_purchased_items,sum(p.amount) Amount
+  3  from customer c join worker w on(w.mobile_no=c.mobile_no)
+  4  join purchase_item_details p on(p.bill_id=c.bill_id)
+  5* group by c.customer_name,c.mobile_no,c.date_of_purchase
+SQL> /
+
+CUSTOMER_NAME         MOBILE_NO DATE_OF_P NO_OF_PURCHASED_ITEMS     AMOUNT
+-------------------- ---------- --------- --------------------- ----------
+Martin               9872087529 27-AUG-19                     1        700
+Malini               8072076518 27-AUG-19                     2       1830
+Ashok                9944032440 25-AUG-19                     2       1080
+Harry                9944032440 23-AUG-19                     1        470
+Malini               8072076518 01-SEP-19                     1        420
+
+SQL> select customer_name from customer where date_of_purchase between '29-AUG-2019' to '2-SEP-2019';
+select customer_name from customer where date_of_purchase between '29-AUG-2019' to '2-SEP-2019'
+                                                                                *
+ERROR at line 1:
+ORA-00905: missing keyword
+
+
+SQL> select customer_name from customer where date_of_purchase from '29-AUG-2019' to '2-SEP-2019';
+select customer_name from customer where date_of_purchase from '29-AUG-2019' to '2-SEP-2019'
+                                                          *
+ERROR at line 1:
+ORA-00920: invalid relational operator
+
+
+SQL> select customer_name from customer where date_of_purchase from '29-AUG-2019' and '2-SEP-2019';
+select customer_name from customer where date_of_purchase from '29-AUG-2019' and '2-SEP-2019'
+                                                          *
+ERROR at line 1:
+ORA-00920: invalid relational operator
+
+
+SQL> select customer_name from customer where date_of_purchase between '29-AUG-2019' and '2-SEP-2019';
+
+CUSTOMER_NAME
+--------------------
+Malar
+Mala
+Sarika
+Malini
+Adams
+Dos
+Velu
+
+7 rows selected.
+
+SQL> select sum(total_amount) from customer where date_of_purchase between '29-AUG-2019' and '2-SEP-2019';
+
+SUM(TOTAL_AMOUNT)
+-----------------
+             3075
+
+SQL>

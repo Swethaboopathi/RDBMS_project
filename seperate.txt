@@ -1,0 +1,58 @@
+CREATE TABLE ITEM_CATEGORIES
+(
+Item_category_id  number(5) primary key,
+Item_name varchar2(30) NOT NULL,
+Item_type varchar2(30),
+Item_colour varchar2(20),
+Price number(4),
+Brand varchar2(20),
+Item_size VARCHAR2(10)
+)
+ 
+INSERT INTO ITEM_CATEGORIES VALUES (7700,'Shirt','MensWear','Red',700,'OTTO','M');
+INSERT INTO ITEM_CATEGORIES VALUES (7701,'Shirt','MensWear','Black',900,'RAMRAJ','XL');
+INSERT INTO ITEM_CATEGORIES VALUES(7702,'Shirt','MensWear','Grey',750,'Xcess',S);
+INSERT INTO ITEM_CATEGORIES VALUES(7703,'Shirt','MensWear','Light Green',1000,'Denim','XL');
+INSERT INTO ITEM_CATEGORIES VALUES(7704,'Shirt','MensWear','White',700,'Solley','XXL');
+INSERT INTO ITEM_CATEGORIES VALUES(7705,'Shirt','MensWear','Dark Red',1700,'PETER ENGLAND','M');
+INSERT INTO ITEM_CATEGORIES(item_category_id,Item_name,Item_type,Item_colour,Price) 
+                  VALUES (7706,' Cotton Saree','Womens Wear','Black',700);
+INSERT INTO ITEM_CATEGORIES(item_category_id,Item_name,Item_type,Item_colour,Price) 
+                  VALUES (7708,' Silk Saree','Womens Wear','pink',500);
+INSERT INTO ITEM_CATEGORIES(item_category_id,Item_name,Item_type,Item_colour,Price) 
+                  VALUES (7709,'Cotton Saree','Womens Wear','Grey',450);
+INSERT INTO ITEM_CATEGORIES(item_category_id,Item_name,Item_type,Item_colour,Price) 
+                  VALUES(7710,'Shifon Saree','Womens Wear','Blue',550);
+INSERT INTO ITEM_CATEGORIES(item_category_id,Item_name,Item_type,Item_colour,Price) 
+                  VALUES(7711,'Silk Saree','Womens Wear','Yellow',760);
+
+INSERT INTO ITEM_CATEGORIES(item_category_id,Item_name,Item_type,Item_colour,Price) 
+                  VALUES(7712,'Poonam Saree','Womens Wear','Greenish Yellow',560);
+INSERT INTO ITEM_CATEGORIES(item_category_id,Item_name,Item_type,Item_colour,Price) 
+                  VALUES(7713,'Cotton Saree','Womens Wear','Grey',450);
+INSERT INTO ITEM_CATEGORIES VALUES(7714,'pant','MensWear','Black',700,'OTTO',38);
+INSERT INTO ITEM_CATEGORIES VALUES(7715,'pant','MensWear','White',900,'MOTHI',36);
+INSERT INTO ITEM_CATEGORIES VALUES(7716,'Pant','MensWear','Grey',750,'XCESS',40);
+INSERT INTO ITEM_CATEGORIES VALUES(7717,'Kids shirt','KidsWear','Red',400,'OTTO','M');
+INSERT INTO ITEM_CATEGORIES VALUES(7718,'Kids shirt','KidsWear','Black',900,'RAMRAJ','XL');
+INSERT INTO ITEM_CATEGORIES VALUES(7719,'Kids shirt','KidsWear','Grey',750,'Xcess',S);
+INSERT INTO ITEM_CATEGORIES VALUES(7720,'Kids suit','kidsWear','Dark Black',700,'OTTO','M');
+INSERT INTO ITEM_CATEGORIES VALUES(7721,'Kids suit','kidsWear','Light Blue',900,'RAMRAJ','XL');
+INSERT INTO ITEM_CATEGORIES VALUES(7722,'Kids suit','kidsWear','Navy Blue',750,'Xcess','S');
+INSERT INTO ITEM_CATEGORIES VALUES(7723,'TShirt','MensWear','Royal blue',650,'PETER ENGLAND','M');
+INSERT INTO ITEM_CATEGORIES VALUES(7724,'TShirt','MensWear','Green',230,'Basics','M');
+INSERT INTO ITEM_CATEGORIES VALUES(7725,'kurta','WomensWear','Violet',460,'Nithi Materials','S');
+INSERT INTO ITEM_CATEGORIES VALUES(7726,'Cotton kurta','WomensWear','Black',500,'Nithi Materials','M');
+INSERT INTO ITEM_CATEGORIES VALUES(7727,'Leggings','WomensWear','White',230,'Cotton Materials','S');
+INSERT INTO ITEM_CATEGORIES VALUES(7728,'Lehanga','WomensWear','Pink',1000,'Silk Materials','XL');
+INSERT INTO ITEM_CATEGORIES VALUES(7729,'Long Frog','WomensWear','peech',500,'PK Materials','M');
+INSERT INTO ITEM_CATEGORIES VALUES(7730,'Kids Pant','KidsWear','Red',400,'OTTO','M');
+INSERT INTO ITEM_CATEGORIES VALUES(7731,'Kids shirt','KidsWear','Golden',330,'Pantaloon','M');
+INSERT INTO ITEM_CATEGORIES VALUES(7732,'Long frog','KidsWear','Black',400,'Trends','XS');
+INSERT INTO ITEM_CATEGORIES VALUES(7733,'Pant','MensWear','Light blue',400,'OTTO','M');
+INSERT INTO ITEM_CATEGORIES VALUES(7734,'Jean','MensWear','Black',700,'Denim','M');
+INSERT INTO ITEM_CATEGORIES VALUES(7735,'Jean','MensWear','Blue',400,'LOL Dresses','M');
+INSERT INTO ITEM_CATEGORIES VALUES(7736,'Kids shirt','KidsWear','Light green',220,'Max','M');
+INSERT INTO ITEM_CATEGORIES VALUES(7737,'Kids shirt','KidsWear','Red',400,'CK Materials','M');
+INSERT INTO ITEM_CATEGORIES VALUES(7738,'Shawl','WomensWear','Red',100,'Art Materials','L');
+INSERT INTO ITEM_CATEGORIES VALUES(7739,'Shawl','WomensWear','Black',200,'Art Materials','M');
