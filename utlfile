@@ -1,0 +1,207 @@
+UTL_FILE load implementation
+•	
+•	UTL_FILE is an oracle pl/sql package that is supplied to allow PL/SQL to read and create text files in the file system.
+•	UTL_FILE can only read and create text files. Specifically, it cannot be used to read or create binary files.
+•	UTL_FILE is an appropriate tool for creating reports in the form of  flat file from the database . UTL_FILE is also used  for reading files.
+The following steps must be followed in order to run UTL_FILE package.
+Step 1) Connect as sys database user 
+Step 2) Create a directory:
+SQL> CREATE OR  REPLACE DIRECTORY utl_file_dir  AS ‘E:\PLSQL’;
+Directory created.
+•	In the above query utl_file_dir  is the logical name for the path ‘E:\PLSQL’.
+•	We can mention the logical name utl_file_dir  inside the program in uppercase within single quotes (utl_file_dir is mapped to the directory ‘E:\PLSQL’)
+•	We can create any number of logical path names(DBA directories) in oracle 10g.
+Step 3) Grant read and write on the directory
+SQL> grant read,write on directory utl_file_dir  to scott;
+Grant succeeded.
+
+Special instructions to create the procedure :-
+conn sys/Capgemini123 as sysdba;
+show user;
+grant execute on sys.utl_file to scott;
+conn scott/tiger;
+
+
+Step 4) connect as scott database user
+SQL>CONNECT  SCOTT/*******
+Example 1:
+The following is the procedure to read a  text file in the file system  and inserting the  text file contents(rows) into a table that is present in oracle 10g database.
+Step 1) Create a text file called input.txt  in windows directory ‘E:\PLSQL’ as shown in the below screen shot.
+ 
+Step 2)Check whether any contents present in emp12 table.
+SQL>CREATE  TABLE EMP12(EMPNO NUMBER(10), ENAME VARCHAR2(15), JOB VARCHAR2(15), MGR NUMBER(4), HIREDATE     DATE, SAL NUMBER(7,2));
+Table created.
+SQL> desc emp12;
+Name                Null?                     Type
+————–    ———–  ———————–
+EMPNO                                  NUMBER(10)
+ENAME                                   VARCHAR2(15)
+JOB                                         VARCHAR2(15)
+MGR                                        NUMBER(4)
+HIREDATE                            DATE
+SAL                                         NUMBER(7,2)
+SQL> select * from emp12;
+no rows selected
+Step 3) Execute the following procedure.
+This  PL/ SQL procedure will insert data(rows) from the text file called ‘input.txt’ to the database table emp12 in scott schema.
+SQL> conn scott/tiger
+Connected.
+SQL> show user
+USER is “SCOTT”
+SQL>create or replace procedure read_file is
+f_line varchar2(2000);
+f utl_file.file_type;
+f_dir varchar2(250);
+fname varchar2(50);
+Comma1 varchar(10);
+Comma2 varchar(10);
+Comma3 varchar(10);
+Comma4 varchar(10);
+Comma5 varchar(10);
+f_empno emp.empno%type;
+f_ename emp.ename%type;
+f_job emp.job%type;
+f_mgr emp.mgr%type;
+f_hiredate emp.hiredate%type;
+f_sal emp.sal%type;
+begin
+f_dir := ‘E:\PLSQL’;
+fname := ‘input.txt’;
+f := utl_file.fopen(‘UTL_FILE_DIR’,fname,’r');  –opening the file using fopen function
+loop
+begin
+utl_file.get_line(f,f_line);
+–using a loop continuously get the file’s  content using get_line function
+exception
+when no_data_found then
+exit;
+end;
+Comma1 := INSTR(f_line, ‘,’ ,1 , 1);
+Comma2 := INSTR(f_line, ‘,’ ,1 , 2);
+Comma3 := INSTR(f_line, ‘,’ ,1 , 3);
+Comma4 := INSTR(f_line, ‘,’ ,1 , 4);
+Comma5 := INSTR(f_line, ‘,’ ,1 , 5);
+–Each field in the input record is delimited by commas.
+–We need to find the location of two commas in the line.
+–and use the locations to get the field from the line.
+f_empno := to_number(SUBSTR(f_line, 1, Comma1-1));
+f_ename := SUBSTR(f_line, Comma1+1, Comma2-Comma1-1);
+f_job := SUBSTR(f_line, comma2+1, Comma3-Comma2-1);
+f_mgr := to_number(SUBSTR(f_line, comma3+1, Comma4-Comma3-1));
+f_hiredate := to_date(SUBSTR(f_line, comma4+1, Comma5-Comma4-1),’dd-mon-yyyy’);
+f_sal := to_number(SUBSTR(f_line, comma5+1),’99999′);
+dbms_output.put_line(f_empno ||’ ‘|| f_ename || ‘ ‘ || f_job || ‘ ‘ || f_mgr ||’ ‘ || f_hiredate||’ ‘|| f_sal);
+insert into emp12 VALUES (f_empno,f_ename,f_job,f_mgr,f_hiredate,f_sal);
+end loop;
+utl_file.fclose(f);
+commit;
+end;
+/
+Procedure created.
+SQL> execute read_file;
+PL/SQL procedure successfully completed.
+Step 4) check the emp12 table that the rows from external text file gets inserted or not.
+SQL> select * from emp12;
+EMPNO           ENAME                  JOB                  MGR       HIREDATE      SAL
+—————     ————–         ————-           ———  —————      ——–
+7369            SMITH                 CLERK                7902      17-DEC-80      800
+7499            ALLEN                ANALYST            7698      20-FEB-81      2850
+7521            WARD                 SALESMAN        7698      22-FEB-81      1250
+7566            JONES                MANAGER          7839      02-APR-81      2975
+7654            MARTIN              SALESMAN         7698      28-SEP-81      1250
+Example 2:
+The following is the procedure to write a database table contents to a text file. 
+This PL/SQL Procedure  write the contents of the database table ‘emp’ in the scott schema to a text file called ‘emp_table.txt’ in the windows  directory ‘E:\PLSQL’ 
+SQL> conn scott/tiger
+Connected.
+SQL> show user
+USER is “SCOTT”
+Step 1)Execute the following procedure.
+create or replace procedure write_file is
+file1 utl_file.file_type;
+cursor empc is
+select * from emp;
+employ empc%rowtype;
+stmt varchar2(300);
+head varchar2(300);
+line  varchar2(300);
+begin
+file1 := utl_file.fopen(‘UTL_FILE_DIR’,'emp_table.txt’,'w’);
+utl_file.put_line(file1,’Report Generated on: ‘ || sysdate);
+utl_file.new_line(file1);
+head:=’EMPNO    ENAME        JOB                        MGR                     HIREDATE                   SAL                          COMM              DEPTNO’;
+UTL_FILE.PUTF(file1, head);
+utl_file.new_line(file1);
+line:= ‘==================================================================================================’;
+UTL_FILE.PUTF(file1, line);
+utl_file.new_line(file1);
+for employ in empc loop
+stmt := rpad(employ.empno,10,’ ‘) ||
+rpad(employ.ename,20,’ ‘) ||
+rpad(employ.job,20,’ ‘) ||
+rpad(nvl(to_char(employ.mgr),’ ‘),30,’ ‘) ||
+rpad(employ.hiredate,30,’ ‘) ||
+rpad(employ.sal,30,’ ‘) ||
+rpad(nvl(to_char(employ.comm),’ ‘),25,’ ‘) ||
+rpad(employ.deptno,8,’ ‘);
+utl_file.PUTF(file1, stmt);
+utl_file.new_line(file1);
+end loop;
+utl_file.fclose(file1);
+end;
+/
+Procedure created.
+SQL> execute write_file;
+PL/SQL procedure successfully completed.
+Step 2) After execution of the above procedure a new file emp_table.txt is created in the location ‘E:\PLSQL’  as shown in the below screenshot.
+ 
+Step 3)Open the text document emp_table.txt to view the output.
+ 
+create or replace procedure read_file is
+f_line varchar2(2000);
+f utl_file.file_type;
+f_dir varchar2(250);
+fname varchar2(50);
+Comma1 varchar(10);
+Comma2 varchar(10);
+Comma3 varchar(10);
+Comma4 varchar(10);
+Comma5 varchar(10);
+f_empno emp.empno%type;
+f_ename emp.ename%type;
+f_job emp.job%type;
+f_mgr emp.mgr%type;
+f_hiredate emp.hiredate%type;
+f_sal emp.sal%type;
+begin
+f_dir := 'E:\PLSQL';
+fname := 'input.txt';
+f := utl_file.fopen('UTL_FILE_DIR',fname,'r');  -–opening the file using fopen function
+loop
+begin
+utl_file.get_line(f,f_line);
+-–using a loop continuously get the file's  content using get_line function
+exception
+when no_data_found then
+exit;
+end;
+Comma1 := INSTR(f_line, ',' ,1 , 1);
+Comma2 := INSTR(f_line, ',' ,1 , 2);
+Comma3 := INSTR(f_line, ',' ,1 , 3);
+Comma4 := INSTR(f_line, ',' ,1 , 4);
+Comma5 := INSTR(f_line, ',' ,1 , 5);
+-–Each field in the input record is delimited by commas.
+-–We need to find the location of two commas in the line.
+-–and use the locations to get the field from the line.
+f_empno := to_number(SUBSTR(f_line, 1, Comma1-1));
+f_ename := SUBSTR(f_line, Comma1+1, Comma2-Comma1-1);
+f_job := SUBSTR(f_line, comma2+1, Comma3-Comma2-1);
+f_mgr := to_number(SUBSTR(f_line, comma3+1, Comma4-Comma3-1));
+f_hiredate := to_date(SUBSTR(f_line, comma4+1, Comma5-Comma4-1),'dd-mon-yyyy');
+f_sal := to_number(SUBSTR(f_line, comma5+1),'99999′);
+dbms_output.put_line(f_empno ||' '|| f_ename || ' ' || f_job || ' ' || f_mgr ||' ' || f_hiredate||' '|| f_sal);
+insert into emp12 VALUES (f_empno,f_ename,f_job,f_mgr,f_hiredate,f_sal);
+end loop;
+utl_file.fclose(f);
+commit;
+end;
